@@ -12,47 +12,6 @@ javascript:(function () {
     calculatorContainer.style.zIndex = "9999";
     calculatorContainer.style.display = "none";
     
-    
-    
-    
-    
-function createOtherButton() {
-    var button = document.createElement("button");
-    button.textContent = "Open Notepad";
-    button.style.width = "120px";
-    button.style.marginTop = "10px";
-    button.style.backgroundColor = "#469afa";
-    button.style.color = "#fff";
-    button.style.border = "none";
-    button.style.borderRadius = "4px";
-    button.style.cursor = "pointer";
-    button.addEventListener("click", toggleNotepad);
-    return button;
-}
-
-function toggleNotepad() {
-    if (isNotepadOpen) {
-        notepadContainer.style.display = "none";
-    } else {
-        notepadContainer.style.display = "block";
-    }
-    isNotepadOpen = !isNotepadOpen;
-}
-})();
-javascript:(function () {
-    var calculatorContainer = document.createElement("div");
-    calculatorContainer.style.position = "fixed";
-    calculatorContainer.style.top = "50%";
-    calculatorContainer.style.left = "50%";
-    calculatorContainer.style.transform = "translate(-50%, -50%)";
-    calculatorContainer.style.backgroundColor = "#f0f0f0";
-    calculatorContainer.style.border = "2px solid #469afa";
-    calculatorContainer.style.borderRadius = "8px";
-    calculatorContainer.style.padding = "20px";
-    calculatorContainer.style.cursor = "move";
-    calculatorContainer.style.zIndex = "9999";
-    calculatorContainer.style.display = "none";
-    
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
