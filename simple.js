@@ -54,22 +54,6 @@ javascript:(function () {
     notepadContainer.appendChild(notepadInput);
     notepadContainer.appendChild(notepadDragButton);
 
-    var input1 = createInput("text");
-    var input2 = createInput("text");
-    var addButton = createOperationButton("Add", addNumbers);
-    var subtractButton = createOperationButton("Subtract", subtractNumbers);
-    var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
-    var divideButton = createOperationButton("Divide", divideNumbers);
-    var dragButton = createDragButton(calculatorContainer);
-    
-    calculatorContainer.appendChild(input1);
-    calculatorContainer.appendChild(input2);
-    calculatorContainer.appendChild(addButton);
-    calculatorContainer.appendChild(subtractButton);
-    calculatorContainer.appendChild(multiplyButton);
-    calculatorContainer.appendChild(divideButton);
-    calculatorContainer.appendChild(dragButton);
-    
     var menuContainer = document.createElement("div");
     menuContainer.style.position = "fixed";
     menuContainer.style.top = "20px";
@@ -81,16 +65,16 @@ javascript:(function () {
     menuContainer.style.border = "2px solid #000000";
     menuContainer.style.borderRadius = "8px";
     menuContainer.style.padding = "20px";
-    
+
     var menuTitle = document.createElement("h2");
     menuTitle.textContent = "Useful Tools";
     menuTitle.style.textAlign = "center";
     menuTitle.style.color = "#333";
     menuTitle.style.marginBottom = "10px";
-    
+
     var openCloseButton = createOpenCloseButton();
     var otherButton = createOtherButton();
-    
+
     menuContainer.appendChild(menuTitle);
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(otherButton);
@@ -121,32 +105,32 @@ javascript:(function () {
             handleDragging(e, container);
         });
     }
-    
+
     function stopDragging() {
         isDragging = false;
         document.removeEventListener("mousemove", handleDragging);
     }
-    
+
     function handleDragging(e, container) {
         if (isDragging) {
             var newX = e.clientX - offsetX;
             var newY = e.clientY - offsetY;
-    
+
             container.style.left = newX + "px";
             container.style.top = newY + "px";
             container.style.transform = "translate(0, 0)";
         }
-    
+
         var maxX = window.innerWidth - container.offsetWidth;
         var maxY = window.innerHeight - container.offsetHeight;
-    
+
         newX = Math.min(Math.max(newX, 0), maxX);
         newY = Math.min(Math.max(newY, 0), maxY);
-    
+
         container.style.left = newX + "px";
         container.style.top = newY + "px";
     }
-    
+
     function createInput(type) {
         var input = document.createElement("input");
         input.type = type;
@@ -158,7 +142,7 @@ javascript:(function () {
         input.style.borderRadius = "4px";
         return input;
     }
-    
+
     function createOperationButton(label, operation) {
         var button = document.createElement("button");
         button.textContent = label;
@@ -176,25 +160,25 @@ javascript:(function () {
         });
         return button;
     }
-    
+
     function addNumbers(num1, num2) {
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 0;
         return num1 + num2;
     }
-    
+
     function subtractNumbers(num1, num2) {
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 0;
         return num1 - num2;
     }
-    
+
     function multiplyNumbers(num1, num2) {
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 0;
         return num1 * num2;
     }
-    
+
     function divideNumbers(num1, num2) {
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 1;
@@ -235,4 +219,5 @@ javascript:(function () {
             notepadContainer.style.display = "block";
         }
         isNotepadOpen = !isNotepadOpen;
-    }})();
+    }
+})();
