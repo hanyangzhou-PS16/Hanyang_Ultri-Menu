@@ -57,8 +57,9 @@
     menuContainer.style.width = "300px";
     menuContainer.style.height = "300px";
     menuContainer.style.zIndex = "9999";
-    calculatorContainer.style.border = "2px solid #000000";
-    calculatorContainer.style.borderRadius = "8px";
+    menuContainer.style.border = "2px solid #000000";
+    menuContainer.style.borderRadius = "8px";
+    menuContainer.style.padding = "20px";
 
     var menuTitle = document.createElement("h2");
     menuTitle.textContent = "Useful Tools";
