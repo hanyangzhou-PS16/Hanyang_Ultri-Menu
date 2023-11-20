@@ -1,4 +1,4 @@
-javascript:(function () {
+(function () {
     var isNotepadOpen = false;
     var calculatorContainer = createCalculatorContainer();
     var notepadContainer = createNotepadContainer();
@@ -112,16 +112,16 @@ javascript:(function () {
         menuContainer.style.border = "2px solid #000000";
         menuContainer.style.borderRadius = "8px";
         menuContainer.style.padding = "20px";
-    
+
         var menuTitle = document.createElement("h2");
         menuTitle.textContent = "Useful Tools";
         menuTitle.style.textAlign = "center";
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
-    
+
         menuContainer.appendChild(menuTitle);
         menuContainer.appendChild(otherButton);
-    
+
         return menuContainer;
     }
 
