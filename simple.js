@@ -71,7 +71,7 @@ javascript:(function () {
     menuTitle.style.textAlign = "center";
     menuTitle.style.color = "#333";
     menuTitle.style.marginBottom = "10px";
-
+    
     var openCloseButton = createOpenCloseButton();
     var otherButton = createOtherButton();
 
@@ -131,6 +131,24 @@ javascript:(function () {
         container.style.top = newY + "px";
     }
 
+    function createDragButton(container) {
+        var dragButton = document.createElement("button");
+        dragButton.textContent = "Drag";
+        dragButton.style.width = "100%";
+        dragButton.style.padding = "10px";
+        dragButton.style.marginTop = "10px";
+        dragButton.style.backgroundColor = "yellow";
+        dragButton.style.color = "#333";
+        dragButton.style.border = "none";
+        dragButton.style.borderRadius = "4px";
+        dragButton.style.cursor = "pointer";
+        dragButton.addEventListener("mousedown", function (e) {
+            startDragging(e, container);
+        });
+        dragButton.addEventListener("mouseup", stopDragging);
+        return dragButton;
+    }
+    
     function createInput(type) {
         var input = document.createElement("input");
         input.type = type;
