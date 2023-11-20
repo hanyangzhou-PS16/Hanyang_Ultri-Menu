@@ -72,6 +72,8 @@
     document.body.appendChild(openCloseButton);
 
     var isCalculatorOpen = true;
+    var isDragging = false;
+    var offsetX, offsetY;
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
@@ -156,4 +158,5 @@
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
-}})();
+    }
+})();
