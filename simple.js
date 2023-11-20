@@ -1,4 +1,5 @@
 javascript:(function () {
+    var isNotepadOpen = false;
     var calculatorContainer = document.createElement("div");
     calculatorContainer.style.position = "fixed";
     calculatorContainer.style.top = "50%";
@@ -84,7 +85,6 @@ javascript:(function () {
     var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
-    var isNotepadOpen = false;
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
