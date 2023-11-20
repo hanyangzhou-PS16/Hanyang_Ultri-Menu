@@ -48,23 +48,59 @@
     calculatorContainer.appendChild(multiplyButton);
     calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
-    document.body.appendChild(calculatorContainer);
     
-    var isDragging = false;
-    var offsetX, offsetY;
+    // Create the iframe menu
+    var iframeMenu = document.createElement("iframe");
+    iframeMenu.src = "about:blank";
+    iframeMenu.style.position = "fixed";
+    iframeMenu.style.top = "10px";
+    iframeMenu.style.left = "10px";
+    iframeMenu.style.width = "150px";
+    iframeMenu.style.height = "50px";
+    iframeMenu.style.border = "2px solid #469afa";
+    iframeMenu.style.borderRadius = "8px";
+    iframeMenu.style.backgroundColor = "#f0f0f0";
     
+    var openCloseButton = document.createElement("button");
+    openCloseButton.textContent = "Open Calculator";
+    openCloseButton.style.width = "100%";
+    openCloseButton.style.height = "100%";
+    openCloseButton.style.backgroundColor = "#469afa";
+    openCloseButton.style.color = "#fff";
+    openCloseButton.style.border = "none";
+    openCloseButton.style.borderRadius = "4px";
+    openCloseButton.style.cursor = "pointer";
+    openCloseButton.addEventListener("click", toggleCalculator);
+    
+    iframeMenu.appendChild(openCloseButton);
+    document.body.appendChild(iframeMenu);
+
+    // Initial state of the calculator
+    var isCalculatorOpen = true;
+
+    function toggleCalculator() {
+        if (isCalculatorOpen) {
+            calculatorContainer.style.display = "none";
+            openCloseButton.textContent = "Open Calculator";
+        } else {
+            calculatorContainer.style.display = "block";
+            openCloseButton.textContent = "Close Calculator";
+        }
+        isCalculatorOpen = !isCalculatorOpen;
+    }
+
     function startDragging(e) {
         isDragging = true;
         offsetX = e.clientX - calculatorContainer.getBoundingClientRect().left;
         offsetY = e.clientY - calculatorContainer.getBoundingClientRect().top;
         document.addEventListener("mousemove", handleDragging);
     }
-    
+
     function stopDragging() {
         isDragging = false;
         document.removeEventListener("mousemove", handleDragging);
     }
-    
+
     function handleDragging(e) {
         if (isDragging) {
             calculatorContainer.style.left = e.clientX - offsetX + "px";
@@ -72,58 +108,3 @@
             calculatorContainer.style.transform = "translate(0, 0)";
         }
     }
-    
-    function createInput(type) {
-        var input = document.createElement("input");
-        input.type = type;
-        input.style.width = "100%";
-        input.style.padding = "10px";
-        input.style.marginTop = "10px";
-        input.style.boxSizing = "border-box";
-        input.style.border = "1px solid #ccc";
-        input.style.borderRadius = "4px";
-        return input;
-    }
-    
-    function createOperationButton(label, operation) {
-        var button = document.createElement("button");
-        button.textContent = label;
-        button.style.width = "100%";
-        button.style.padding = "10px";
-        button.style.marginTop = "10px";
-        button.style.backgroundColor = "#469afa";
-        button.style.color = "#fff";
-        button.style.border = "none";
-        button.style.borderRadius = "4px";
-        button.style.cursor = "pointer";
-        button.addEventListener("click", function () {
-            var result = operation(input1.value, input2.value);
-            alert("Answer: " + result);
-        });
-        return button;
-    }
-    
-    function addNumbers(num1, num2) {
-        num1 = parseFloat(num1) || 0;
-        num2 = parseFloat(num2) || 0;
-        return num1 + num2;
-    }
-    
-    function subtractNumbers(num1, num2) {
-        num1 = parseFloat(num1) || 0;
-        num2 = parseFloat(num2) || 0;
-        return num1 - num2;
-    }
-    
-    function multiplyNumbers(num1, num2) {
-        num1 = parseFloat(num1) || 0;
-        num2 = parseFloat(num2) || 0;
-        return num1 * num2;
-    }
-    
-    function divideNumbers(num1, num2) {
-        num1 = parseFloat(num1) || 0;
-        num2 = parseFloat(num2) || 1;
-        return num1 / num2;
-    }
-})();
