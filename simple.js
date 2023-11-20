@@ -46,10 +46,10 @@ javascript:(function () {
     notepadContainer.style.padding = "20px";
     notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
     notepadContainer.style.zIndex = "9999";
-    notepadContainer.style.display = "none"; // Added display property
+    notepadContainer.style.display = "none";
 
-    var notepadInput = createInput("text"); // Used createInput function
-    var notepadDragButton = createDragButton(notepadContainer); // Used createDragButton function
+    var notepadInput = createInput("text");
+    var notepadDragButton = createDragButton(notepadContainer);
 
     notepadContainer.appendChild(notepadInput);
     notepadContainer.appendChild(notepadDragButton);
