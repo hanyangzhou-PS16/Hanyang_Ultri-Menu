@@ -108,3 +108,22 @@
             calculatorContainer.style.transform = "translate(0, 0)";
         }
     }
+
+    function createInput(type) {
+        var input = document.createElement("input");
+        input.type = type;
+        input.style.width = "100%";
+        input.style.padding = "10px";
+        input.style.marginTop = "10px";
+        input.style.boxSizing = "border-box";
+        input.style.border = "1px solid #ccc";
+        input.style.borderRadius = "4px";
+        return input;
+    }
+
+    function createOperationButton(label, operation) {
+        var button = document.createElement("button");
+        button.textContent = label;
+        button.style.width = "100%";
+        button.style.padding = "10px";
+        button.style.marginTop = "10px";
