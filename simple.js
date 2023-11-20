@@ -89,15 +89,6 @@
     notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
     notepadContainer.style.zIndex = "9999";
     
-    function toggleNotepad() {
-        if (isNotepadOpen) {
-            notepadContainer.style.display = "none";
-        } else {
-            notepadContainer.style.display = "block";
-        }
-        isNotepadOpen = !isNotepadOpen;
-    }
-    
     var otherButton = document.createElement("button");
     otherButton.textContent = "Open Notepad";
     otherButton.style.width = "120px";
@@ -118,17 +109,6 @@
     notepad.style.padding = "10px";
     notepad.style.fontSize = "14px";
     notepad.placeholder = "Start typing...";
-    otherButton.addEventListener("click", function () {
-        if (isNotepadOpen) {
-            notepadContainer.appendChild(notepad);
-            document.body.appendChild(notepadContainer);
-            isNotepadOpen = true;
-        } else {
-            notepadContainer.removeChild(notepad);
-            document.body.removeChild(notepadContainer);
-            isNotepadOpen = false;
-        }
-    });
     
     menuContainer.appendChild(menuTitle);
     menuContainer.appendChild(openCloseButton);
@@ -149,6 +129,15 @@
             openCloseButton.textContent = "Close Calculator";
         }
         isCalculatorOpen = !isCalculatorOpen;
+    }
+    
+    function toggleNotepad() {
+        if (isNotepadOpen) {
+            notepadContainer.style.display = "none";
+        } else {
+            notepadContainer.style.display = "block";
+        }
+        isNotepadOpen = !isNotepadOpen;
     }
 
     function startDragging(e) {
