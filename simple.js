@@ -132,6 +132,14 @@
             calculatorContainer.style.top = newY + "px";
             calculatorContainer.style.transform = "translate(0, 0)";
         }
+        var maxX = window.innerWidth - calculatorContainer.offsetWidth;
+        var maxY = window.innerHeight - calculatorContainer.offsetHeight;
+        
+        newX = Math.min(Math.max(newX, 0), maxX);
+        newY = Math.min(Math.max(newY, 0), maxY);
+
+        calculatorContainer.style.left = newX + "px";
+        calculatorContainer.style.top = newY + "px";
     }
                 
     function createInput(type) {
@@ -187,16 +195,4 @@
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
     }
-
-    var openCloseButton = document.createElement("button");
-    openCloseButton.textContent = "Open Calculator";
-    openCloseButton.style.width = "20%";
-    openCloseButton.style.height = "20%";
-    openCloseButton.style.backgroundColor = "#469afa";
-    openCloseButton.style.color = "#fff";
-    openCloseButton.style.border = "none";
-    openCloseButton.style.borderRadius = "4px";
-    openCloseButton.style.cursor = "pointer";
-    openCloseButton.addEventListener("click", toggleCalculator);
-    document.body.appendChild(openCloseButton);
 })();
