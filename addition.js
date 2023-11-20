@@ -9,6 +9,7 @@
     calculatorContainer.style.borderRadius = "8px";
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
+    
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
@@ -18,22 +19,13 @@
     title.addEventListener("mousedown", startDragging);
     document.addEventListener("mouseup", stopDragging);
     calculatorContainer.appendChild(title);
+    
     var input1 = createInput("text");
     var input2 = createInput("text");
-    var enterButton = document.createElement("button");
-    enterButton.textContent = "Add";
-    enterButton.style.width = "100%";
-    enterButton.style.padding = "10px";
-    enterButton.style.marginTop = "10px";
-    enterButton.style.backgroundColor = "#469afa";
-    enterButton.style.color = "#fff";
-    enterButton.style.border = "none";
-    enterButton.style.borderRadius = "4px";
-    enterButton.style.cursor = "pointer";
-    enterButton.addEventListener("click", function () {
-        var result = addNumbers(input1.value, input2.value);
-        alert("Answer: " + result);
-    });
+    
+    var addButton = createOperationButton("Add", addNumbers);
+    var subtractButton = createOperationButton("Subtract", subtractNumbers);
+    
     var dragButton = document.createElement("button");
     dragButton.textContent = "Drag";
     dragButton.style.width = "100%";
@@ -46,23 +38,29 @@
     dragButton.style.cursor = "pointer";
     dragButton.addEventListener("mousedown", startDragging);
     dragButton.addEventListener("mouseup", stopDragging);
+    
     calculatorContainer.appendChild(input1);
     calculatorContainer.appendChild(input2);
-    calculatorContainer.appendChild(enterButton);
+    calculatorContainer.appendChild(addButton);
+    calculatorContainer.appendChild(subtractButton);
     calculatorContainer.appendChild(dragButton);
     document.body.appendChild(calculatorContainer);
+    
     var isDragging = false;
     var offsetX, offsetY;
+    
     function startDragging(e) {
         isDragging = true;
         offsetX = e.clientX - calculatorContainer.getBoundingClientRect().left;
         offsetY = e.clientY - calculatorContainer.getBoundingClientRect().top;
         document.addEventListener("mousemove", handleDragging);
     }
+    
     function stopDragging() {
         isDragging = false;
         document.removeEventListener("mousemove", handleDragging);
     }
+    
     function handleDragging(e) {
         if (isDragging) {
             calculatorContainer.style.left = e.clientX - offsetX + "px";
@@ -70,6 +68,7 @@
             calculatorContainer.style.transform = "translate(0, 0)";
         }
     }
+    
     function createInput(type) {
         var input = document.createElement("input");
         input.type = type;
@@ -81,9 +80,34 @@
         input.style.borderRadius = "4px";
         return input;
     }
+    
+    function createOperationButton(label, operation) {
+        var button = document.createElement("button");
+        button.textContent = label;
+        button.style.width = "100%";
+        button.style.padding = "10px";
+        button.style.marginTop = "10px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", function () {
+            var result = operation(input1.value, input2.value);
+            alert("Answer: " + result);
+        });
+        return button;
+    }
+    
     function addNumbers(num1, num2) {
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 0;
         return num1 + num2;
+    }
+    
+    function subtractNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 0;
+        return num1 - num2;
     }
 })();
