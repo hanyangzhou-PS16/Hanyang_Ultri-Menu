@@ -18,8 +18,6 @@
     title.style.color = "#333";
     title.style.marginBottom = "10px";
     title.style.cursor = "grab";
-    title.addEventListener("mousedown", startDragging);
-    document.addEventListener("mouseup", stopDragging);
     calculatorContainer.appendChild(title);
 
     var input1 = createInput("text");
@@ -56,8 +54,10 @@
     menuContainer.style.top = "20px";
     menuContainer.style.left = "20px";
     menuContainer.style.backgroundColor = "#fff86e";
+    menuContainer.style.width = "300px";
+    menuContainer.style.height = "300px";
     menuContainer.style.zIndex = "9999";
-    calculatorContainer.style.border = "2px solid #469afa";
+    calculatorContainer.style.border = "2px solid #000000";
     calculatorContainer.style.borderRadius = "8px";
 
     var openCloseButton = document.createElement("button");
