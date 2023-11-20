@@ -86,7 +86,9 @@
     otherButton.style.border = "none";
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
+    
     var isNotepadOpen = false;
+    
     var notepadContainer = document.createElement("div");
     notepadContainer.style.position = "fixed";
     notepadContainer.style.top = "50%";
@@ -97,6 +99,7 @@
     notepadContainer.style.padding = "20px";
     notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
     notepadContainer.style.zIndex = "9999";
+    
     var notepad = document.createElement("textarea");
     notepad.style.width = "100%";
     notepad.style.height = "300px";
@@ -106,12 +109,13 @@
     notepad.style.padding = "10px";
     notepad.style.fontSize = "14px";
     notepad.placeholder = "Start typing...";
-    notepadContainer.appendChild(notepad);
     otherButton.addEventListener("click", function () {
         if (isNotepadOpen) {
+            notepadContainer.appendChild(notepad);
             document.body.appendChild(notepadContainer);
             isNotepadOpen = true;
         } else {
+            notepadContainer.removeChild(notepad);
             document.body.removeChild(notepadContainer);
             isNotepadOpen = false;
         }
