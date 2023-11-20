@@ -10,7 +10,7 @@ javascript:(function () {
     calculatorContainer.style.borderRadius = "8px";
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
-    calculatorContainer.style.zIndex = "9999";
+    calculatorContainer.style.zIndex = "9998";
     calculatorContainer.style.display = "none";
 
     var title = document.createElement("h2");
