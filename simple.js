@@ -51,6 +51,38 @@
     calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
 
+    var menuContainer = document.createElement("div");
+    menuContainer.style.position = "fixed";
+    menuContainer.style.top = "20px";
+    menuContainer.style.left = "20px";
+    menuContainer.style.zIndex = "9999";
+
+    var openCloseButton = document.createElement("button");
+    openCloseButton.textContent = "Open Calculator";
+    openCloseButton.style.width = "120px";
+    openCloseButton.style.backgroundColor = "#469afa";
+    openCloseButton.style.color = "#fff";
+    openCloseButton.style.border = "none";
+    openCloseButton.style.borderRadius = "4px";
+    openCloseButton.style.cursor = "pointer";
+    openCloseButton.addEventListener("click", toggleCalculator);
+
+    var otherButton = document.createElement("button");
+    otherButton.textContent = "Other Button";
+    otherButton.style.width = "120px";
+    otherButton.style.marginTop = "10px";
+    otherButton.style.backgroundColor = "#469afa";
+    otherButton.style.color = "#fff";
+    otherButton.style.border = "none";
+    otherButton.style.borderRadius = "4px";
+    otherButton.style.cursor = "pointer";
+    otherButton.addEventListener("click", function () {
+        alert("Other Button Clicked!");
+    });
+
+    menuContainer.appendChild(openCloseButton);
+    menuContainer.appendChild(otherButton);
+    document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
 
     var isCalculatorOpen = false;
@@ -60,8 +92,10 @@
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
+            openCloseButton.textContent = "Open Calculator";
         } else {
             calculatorContainer.style.display = "block";
+            openCloseButton.textContent = "Close Calculator";
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
@@ -88,7 +122,7 @@
             calculatorContainer.style.transform = "translate(0, 0)";
         }
     }
-
+                
     function createInput(type) {
         var input = document.createElement("input");
         input.type = type;
