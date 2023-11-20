@@ -25,6 +25,8 @@
     
     var addButton = createOperationButton("Add", addNumbers);
     var subtractButton = createOperationButton("Subtract", subtractNumbers);
+    var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
+    var divideButton = createOperationButton("Divide", divideNumbers);
     
     var dragButton = document.createElement("button");
     dragButton.textContent = "Drag";
@@ -43,6 +45,8 @@
     calculatorContainer.appendChild(input2);
     calculatorContainer.appendChild(addButton);
     calculatorContainer.appendChild(subtractButton);
+    calculatorContainer.appendChild(multiplyButton);
+    calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
     document.body.appendChild(calculatorContainer);
     
@@ -109,5 +113,17 @@
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 0;
         return num1 - num2;
+    }
+    
+    function multiplyNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 0;
+        return num1 * num2;
+    }
+    
+    function divideNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 1;
+        return num1 / num2;
     }
 })();
