@@ -10,7 +10,7 @@ javascript:(function () {
     var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
-    
+    var otherButton = createOtherButton();
     var openCloseButton = createOpenCloseButton();
     menuContainer.appendChild(openCloseButton);
 
@@ -29,10 +29,10 @@ javascript:(function () {
         console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
-            openCloseButton.textContent = "Open Notepad";
+            otherButton.textContent = "Open Notepad"
         } else {
             notepadContainer.style.display = "block";
-            openCloseButton.textContent = "Close Notepad";
+            otherButton.textContent = "Close Notepad";
         }
         isNotepadOpen = !isNotepadOpen;
     }
@@ -91,7 +91,7 @@ javascript:(function () {
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
         
-        var notepadInput = createInput("text")
+        var notepadInput = createInput("text");
         var notepadDragButton = createDragButton(notepadContainer);
 
         notepadContainer.appendChild(notepadInput);
@@ -119,8 +119,6 @@ javascript:(function () {
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
         
-        var otherButton = createOtherButton();
-
         menuContainer.appendChild(menuTitle);
         menuContainer.appendChild(otherButton);
 
