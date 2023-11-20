@@ -197,17 +197,6 @@
     }
 })();
 (function() {
-    function moveIframe() {
-        var iframe = document.createElement("iframe");
-        var currentTransform = iframe.style.transform;
-        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
-        var currentX = match ? parseInt(match[1]) : 0;
-        var currentY = match ? parseInt(match[2]) : 0;
-        var newX = currentX + 50;
-        var newY = currentY + 50;
-        iframe.style.transition = 'transform 0.5s ease-in-out';
-        iframe.style.transform = `translate(${newX}px, ${newY}px)`;
-    }
     var button = document.createElement('button');
     button.textContent = 'Move Iframe';
     button.style.position = 'fixed';
@@ -219,6 +208,19 @@
     button.style.border = 'none';
     button.style.borderRadius = '4px';
     button.style.cursor = 'pointer';
-    button.addEventListener('click', moveIframe);
+    function moveButton() {
+        var iframe = button;
+        iframe.style.position = 'fixed';
+        iframe.style.backgroundColor = '#469afa';
+        var currentTransform = iframe.style.transform;
+        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
+        var currentX = match ? parseInt(match[1]) : 0;
+        var currentY = match ? parseInt(match[2]) : 0;
+        var newX = currentX + 50;
+        var newY = currentY + 50;
+        iframe.style.transition = 'transform 0.5s ease-in-out';
+        iframe.style.transform = `translate(${newX}px, ${newY}px)`;
+    }
+    button.addEventListener('click', moveButton);
     document.body.appendChild(button);
 })();
