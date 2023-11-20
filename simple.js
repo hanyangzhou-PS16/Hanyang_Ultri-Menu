@@ -11,7 +11,7 @@ javascript:(function () {
     calculatorContainer.style.cursor = "move";
     calculatorContainer.style.zIndex = "9999";
     calculatorContainer.style.display = "none";
-    
+
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
@@ -19,7 +19,7 @@ javascript:(function () {
     title.style.marginBottom = "10px";
     title.style.cursor = "grab";
     calculatorContainer.appendChild(title);
-    
+
     var input1 = createInput("text");
     var input2 = createInput("text");
     var addButton = createOperationButton("Add", addNumbers);
@@ -27,7 +27,7 @@ javascript:(function () {
     var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
     var divideButton = createOperationButton("Divide", divideNumbers);
     var dragButton = createDragButton(calculatorContainer);
-    
+
     calculatorContainer.appendChild(input1);
     calculatorContainer.appendChild(input2);
     calculatorContainer.appendChild(addButton);
@@ -46,7 +46,14 @@ javascript:(function () {
     notepadContainer.style.padding = "20px";
     notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
     notepadContainer.style.zIndex = "9999";
-    
+    notepadContainer.style.display = "none"; // Added display property
+
+    var notepadInput = createInput("text"); // Used createInput function
+    var notepadDragButton = createDragButton(notepadContainer); // Used createDragButton function
+
+    notepadContainer.appendChild(notepadInput);
+    notepadContainer.appendChild(notepadDragButton);
+
     var input1 = createInput("text");
     var input2 = createInput("text");
     var addButton = createOperationButton("Add", addNumbers);
@@ -89,12 +96,12 @@ javascript:(function () {
     menuContainer.appendChild(otherButton);
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
-    
+
     var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
     var isNotepadOpen = false;
-    
+
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
@@ -105,7 +112,7 @@ javascript:(function () {
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
-    
+
     function startDragging(e, container) {
         isDragging = true;
         offsetX = e.clientX - container.getBoundingClientRect().left;
@@ -193,7 +200,7 @@ javascript:(function () {
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
     }
-    
+
     function createOpenCloseButton() {
         var button = document.createElement("button");
         button.textContent = "Open Calculator";
@@ -206,6 +213,7 @@ javascript:(function () {
         button.addEventListener("click", toggleCalculator);
         return button;
     }
+
     function createOtherButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
@@ -227,5 +235,4 @@ javascript:(function () {
             notepadContainer.style.display = "block";
         }
         isNotepadOpen = !isNotepadOpen;
-    }
-})();
+    }})();
