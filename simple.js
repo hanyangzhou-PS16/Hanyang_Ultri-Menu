@@ -29,8 +29,10 @@ javascript:(function () {
         console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
+            openCloseButton.textContent = "Open Notepad";
         } else {
             notepadContainer.style.display = "block";
+            openCloseButton.textContent = "Close Notepad";
         }
         isNotepadOpen = !isNotepadOpen;
     }
@@ -89,7 +91,7 @@ javascript:(function () {
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
         
-        var notepadInput = createInput("text");
+        var notepadInput = document.createElement("textarea")
         var notepadDragButton = createDragButton(notepadContainer);
 
         notepadContainer.appendChild(notepadInput);
