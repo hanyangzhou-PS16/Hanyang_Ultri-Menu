@@ -59,7 +59,6 @@
     iframeMenu.style.border = "2px solid #469afa";
     iframeMenu.style.borderRadius = "8px";
     iframeMenu.style.backgroundColor = "#f0f0f0";
-
     var openCloseButton = document.createElement("button");
     openCloseButton.textContent = "Open Calculator";
     openCloseButton.style.width = "100%";
@@ -70,9 +69,7 @@
     openCloseButton.style.borderRadius = "4px";
     openCloseButton.style.cursor = "pointer";
     openCloseButton.addEventListener("click", toggleCalculator);
-
-    iframeMenu.appendChild(openCloseButton);
-    document.body.appendChild(iframeMenu);
+    document.body.appendChild(openCloseButton);
 
     var isCalculatorOpen = true;
 
@@ -159,5 +156,4 @@
         num1 = parseFloat(num1) || 0;
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
-    }
-})();
+}})();
