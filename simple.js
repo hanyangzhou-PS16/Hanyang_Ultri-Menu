@@ -91,7 +91,7 @@ javascript:(function () {
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
         
-        var notepadInput = document.createElement("textarea")
+        var notepadInput = createInput("text")
         var notepadDragButton = createDragButton(notepadContainer);
 
         notepadContainer.appendChild(notepadInput);
