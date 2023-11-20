@@ -70,6 +70,7 @@
     openCloseButton.style.cursor = "pointer";
     openCloseButton.addEventListener("click", toggleCalculator);
     document.body.appendChild(openCloseButton);
+    document.body.appendChild(calculatorContainer)
 
     var isCalculatorOpen = true;
     var isDragging = false;
