@@ -5,6 +5,7 @@ javascript:(function () {
     var menuContainer = createMenuContainer();
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
+    document.body.appendChild(notepadContainer);
 
     var isCalculatorOpen = false;
     var isDragging = false;
@@ -58,10 +59,10 @@ javascript:(function () {
 
         var input1 = createInput("text");
         var input2 = createInput("text");
-        var addButton = createOperationButton("Add", addNumbers);
-        var subtractButton = createOperationButton("Subtract", subtractNumbers);
-        var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
-        var divideButton = createOperationButton("Divide", divideNumbers);
+        var addButton = createOperationButton("Add", addNumbers, input1, input2);
+        var subtractButton = createOperationButton("Subtract", subtractNumbers, input1, input2);
+        var multiplyButton = createOperationButton("Multiply", multiplyNumbers, input1, input2);
+        var divideButton = createOperationButton("Divide", divideNumbers, input1, input2);
         var dragButton = createDragButton(calculatorContainer);
 
         calculatorContainer.appendChild(input1);
@@ -186,7 +187,7 @@ javascript:(function () {
         return input;
     }
 
-    function createOperationButton(label, operation) {
+    function createOperationButton(label, operation, input1, input2) {
         var button = document.createElement("button");
         button.textContent = label;
         button.style.width = "100%";
