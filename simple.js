@@ -87,7 +87,23 @@
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
     otherButton.addEventListener("click", function () {
-        alert("Coming Soon!");
+        var currentTransform = iframe.style.transform;
+        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
+        var currentX1 = match ? parseInt(match[1]) : 0;
+        var currentY1 = match ? parseInt(match[2]) : 0;
+        var newX1 = currentX1 + 50;
+        var newY1 = currentY1 + 50;
+        var maxX1 = window.innerWidth - menuContainer.offsetWidth;
+        var maxY1 = window.innerHeight - menuContainer.offsetHeight;
+        if(newX1 < maxX1 && newY1 < maxY1) {
+            otherButton.style.transition = 'transform 0.5s ease-in-out';
+            otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
+        } else {
+            newX1 = Math.min(Math.max(newX1, 0), maxX1);
+            newY1 = Math.min(Math.max(newY1, 0), maxY1);
+            otherButton.style.transition = 'transform 0.5s ease-in-out';
+            otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
+        }
     });
     
     menuContainer.appendChild(menuTitle);
@@ -195,32 +211,4 @@
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
     }
-})();
-(function() {
-    var button = document.createElement('button');
-    button.textContent = 'Move Iframe';
-    button.style.position = 'fixed';
-    button.style.top = '20px';
-    button.style.left = '20px';
-    button.style.zIndex = '9999';
-    button.style.backgroundColor = '#469afa';
-    button.style.color = '#fff';
-    button.style.border = 'none';
-    button.style.borderRadius = '4px';
-    button.style.cursor = 'pointer';
-    function moveButton() {
-        var iframe = button;
-        iframe.style.position = 'fixed';
-        iframe.style.backgroundColor = '#469afa';
-        var currentTransform = iframe.style.transform;
-        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
-        var currentX = match ? parseInt(match[1]) : 0;
-        var currentY = match ? parseInt(match[2]) : 0;
-        var newX = currentX + 50;
-        var newY = currentY + 50;
-        iframe.style.transition = 'transform 0.5s ease-in-out';
-        iframe.style.transform = `translate(${newX}px, ${newY}px)`;
-    }
-    button.addEventListener('click', moveButton);
-    document.body.appendChild(button);
 })();
