@@ -231,6 +231,7 @@ javascript:(function () {
     }
 
     function toggleNotepad() {
+        console.log("Toggling Notepad...")
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
         } else {
