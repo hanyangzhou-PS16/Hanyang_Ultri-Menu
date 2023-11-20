@@ -9,6 +9,7 @@
     calculatorContainer.style.borderRadius = "8px";
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
+    calculatorContainer.style.zIndex = "9999"; // Set a higher z-index
 
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
