@@ -59,7 +59,7 @@
         calculatorContainer.style.top = "50%";
         calculatorContainer.style.left = "50%";
         calculatorContainer.style.transform = "translate(-50%, -50%)";
-        calculatorContainer.style.backgroundColor = "#f0f0f0";
+        calculatorContainer.style.backgroundColor = "#fff86e";
         calculatorContainer.style.border = "2px solid #469afa";
         calculatorContainer.style.borderRadius = "8px";
         calculatorContainer.style.padding = "20px";
@@ -99,6 +99,7 @@
         notepadContainer.style.position = "fixed";
         notepadContainer.style.top = "50%";
         notepadContainer.style.left = "50%";
+        notepadContainer.style.backgroundColor = "#fff86e";
         notepadContainer.style.transform = "translate(-50%, -50%)";
         notepadContainer.style.border = "2px solid #469afa";
         notepadContainer.style.borderRadius = "8px";
