@@ -78,7 +78,7 @@
     openCloseButton.addEventListener("click", toggleCalculator);
 
     var otherButton = document.createElement("button");
-    otherButton.textContent = "Button";
+    otherButton.textContent = "Open Notepad";
     otherButton.style.width = "120px";
     otherButton.style.marginTop = "10px";
     otherButton.style.backgroundColor = "#469afa";
@@ -86,8 +86,35 @@
     otherButton.style.border = "none";
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
+    var isNotepadOpen = false;
+    var notepadContainer = document.createElement("div");
+    notepadContainer.style.position = "fixed";
+    notepadContainer.style.top = "50%";
+    notepadContainer.style.left = "50%";
+    notepadContainer.style.transform = "translate(-50%, -50%)";
+    notepadContainer.style.border = "2px solid #469afa";
+    notepadContainer.style.borderRadius = "8px";
+    notepadContainer.style.padding = "20px";
+    notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+    notepadContainer.style.zIndex = "9999";
+    var notepad = document.createElement("textarea");
+    notepad.style.width = "100%";
+    notepad.style.height = "300px";
+    notepad.style.boxSizing = "border-box";
+    notepad.style.border = "1px solid #ccc";
+    notepad.style.borderRadius = "4px";
+    notepad.style.padding = "10px";
+    notepad.style.fontSize = "14px";
+    notepad.placeholder = "Start typing...";
+    notepadContainer.appendChild(notepad);
     otherButton.addEventListener("click", function () {
-        alert("Coming Soon!")
+        if (isNotepadOpen) {
+            document.body.appendChild(notepadContainer);
+            isNotepadOpen = true;
+        } else if (isNotepadOpen == true) {
+            document.body.removeChild(notepadContainer);
+            isNotepadOpen = false;
+        }
     });
     
     menuContainer.appendChild(menuTitle);
