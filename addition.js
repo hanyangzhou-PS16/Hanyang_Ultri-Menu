@@ -73,7 +73,6 @@
 
     iframeMenu.appendChild(openCloseButton);
     document.body.appendChild(iframeMenu);
-    document.body.appendChild(calculatorContainer);
 
     var isCalculatorOpen = true;
 
