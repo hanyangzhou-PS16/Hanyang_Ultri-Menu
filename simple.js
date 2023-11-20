@@ -226,7 +226,7 @@
 
     if (typeof jQuery === 'undefined') {
         var script = document.createElement('script');
-        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js'; // Replace with the desired jQuery version
+        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js';
         script.onload = createButton;
         document.head.appendChild(script);
     } else {
