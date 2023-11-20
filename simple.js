@@ -55,7 +55,10 @@
     menuContainer.style.position = "fixed";
     menuContainer.style.top = "20px";
     menuContainer.style.left = "20px";
+    menuContainer.style.backgroundColor = "#fff86e"
     menuContainer.style.zIndex = "9999";
+    menuContainer.style.border = "none";
+    menuContainer.style.borderRadius = "4px";
 
     var openCloseButton = document.createElement("button");
     openCloseButton.textContent = "Open Calculator";
@@ -68,7 +71,7 @@
     openCloseButton.addEventListener("click", toggleCalculator);
 
     var otherButton = document.createElement("button");
-    otherButton.textContent = "Other Button";
+    otherButton.textContent = "Button";
     otherButton.style.width = "120px";
     otherButton.style.marginTop = "10px";
     otherButton.style.backgroundColor = "#469afa";
