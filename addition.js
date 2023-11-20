@@ -52,10 +52,10 @@
     var iframeMenu = document.createElement("iframe");
     iframeMenu.src = "about:blank";
     iframeMenu.style.position = "fixed";
-    iframeMenu.style.top = "400px";
-    iframeMenu.style.left = "400px";
-    iframeMenu.style.width = "150px";
-    iframeMenu.style.height = "150px";
+    iframeMenu.style.top = "200px";
+    iframeMenu.style.left = "200px";
+    iframeMenu.style.width = "100px";
+    iframeMenu.style.height = "100px";
     iframeMenu.style.border = "2px solid #469afa";
     iframeMenu.style.borderRadius = "8px";
     iframeMenu.style.backgroundColor = "#f0f0f0";
