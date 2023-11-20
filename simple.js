@@ -76,7 +76,17 @@
     openCloseButton.style.borderRadius = "4px";
     openCloseButton.style.cursor = "pointer";
     openCloseButton.addEventListener("click", toggleCalculator);
-
+    
+    var isNotepadOpen = false;
+    function toggleNotepad() {
+        if (isNotepadOpen) {
+            notepadContainer.style.display = "none";
+        } else {
+            notepadContainer.style.display = "block";
+        }
+        isNotepadOpen = !isNotepadOpen;
+    }
+    
     var otherButton = document.createElement("button");
     otherButton.textContent = "Open Notepad";
     otherButton.style.width = "120px";
@@ -86,9 +96,8 @@
     otherButton.style.border = "none";
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
-    
-    var isNotepadOpen = false;
-    
+    otherButton.addEventListener("click", toggleNotepad)
+        
     var notepadContainer = document.createElement("div");
     notepadContainer.style.position = "fixed";
     notepadContainer.style.top = "50%";
