@@ -93,17 +93,8 @@
         var currentY1 = match ? parseInt(match[2]) : 0;
         var newX1 = currentX1 + 50;
         var newY1 = currentY1 + 50;
-        var maxX1 = window.innerWidth - menuContainer.offsetWidth;
-        var maxY1 = window.innerHeight - menuContainer.offsetHeight;
-        if(newX1 < maxX1 && newY1 < maxY1) {
-            otherButton.style.transition = 'transform 0.5s ease-in-out';
-            otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
-        } else {
-            newX1 = Math.min(Math.max(newX1, 0), maxX1);
-            newY1 = Math.min(Math.max(newY1, 0), maxY1);
-            otherButton.style.transition = 'transform 0.5s ease-in-out';
-            otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
-        }
+        otherButton.style.transition = 'transform 0.5s ease-in-out';
+        otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
     });
     
     menuContainer.appendChild(menuTitle);
