@@ -39,6 +39,20 @@
         isNotepadOpen = !isNotepadOpen;
     }
 
+    function createOtherButton() {
+        var button = document.createElement("button");
+        button.textContent = "Open Notepad";
+        button.style.width = "120px";
+        button.style.marginTop = "10px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", toggleNotepad);
+        return button;
+    }
+    
     function createCalculatorContainer() {
         var calculatorContainer = document.createElement("div");
         calculatorContainer.style.position = "fixed";
@@ -241,20 +255,6 @@
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", toggleCalculator);
-        return button;
-    }
-
-    function createOtherButton() {
-        var button = document.createElement("button");
-        button.textContent = "Open Notepad";
-        button.style.width = "120px";
-        button.style.marginTop = "10px";
-        button.style.backgroundColor = "#469afa";
-        button.style.color = "#fff";
-        button.style.border = "none";
-        button.style.borderRadius = "4px";
-        button.style.cursor = "pointer";
-        button.addEventListener("click", toggleNotepad);
         return button;
     }
 })();
