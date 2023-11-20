@@ -29,7 +29,7 @@ javascript:(function () {
         console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
-            otherButton.textContent = "Open Notepad"
+            otherButton.textContent = "Open Notepad";
         } else {
             notepadContainer.style.display = "block";
             otherButton.textContent = "Close Notepad";
@@ -50,7 +50,7 @@ javascript:(function () {
         calculatorContainer.style.cursor = "move";
         calculatorContainer.style.zIndex = "9998";
         calculatorContainer.style.display = "none";
-        
+
         var title = document.createElement("h2");
         title.textContent = "Simple Calculator";
         title.style.textAlign = "center";
@@ -90,7 +90,7 @@ javascript:(function () {
         notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
-        
+
         var notepadInput = createInput("text");
         var notepadDragButton = createDragButton(notepadContainer);
 
@@ -112,13 +112,13 @@ javascript:(function () {
         menuContainer.style.border = "2px solid #000000";
         menuContainer.style.borderRadius = "8px";
         menuContainer.style.padding = "20px";
-        
+
         var menuTitle = document.createElement("h2");
         menuTitle.textContent = "Useful Tools";
         menuTitle.style.textAlign = "center";
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
-        
+
         menuContainer.appendChild(menuTitle);
         menuContainer.appendChild(otherButton);
 
@@ -142,19 +142,19 @@ javascript:(function () {
             var newX = e.clientX - offsetX;
             var newY = e.clientY - offsetY;
 
-            container.style.left = newX + "px";
-            container.style.top = newY + "px";
-            container.style.transform = "translate(0, 0)";
+            calculatorContainer.style.left = newX + "px";
+            calculatorContainer.style.top = newY + "px";
+            calculatorContainer.style.transform = "translate(0, 0)";
         }
 
-        var maxX = window.innerWidth - container.offsetWidth;
-        var maxY = window.innerHeight - container.offsetHeight;
+        var maxX = window.innerWidth - calculatorContainer.offsetWidth;
+        var maxY = window.innerHeight - calculatorContainer.offsetHeight;
 
         newX = Math.min(Math.max(newX, 0), maxX);
         newY = Math.min(Math.max(newY, 0), maxY);
 
-        container.style.left = newX + "px";
-        container.style.top = newY + "px";
+        calculatorContainer.style.left = newX + "px";
+        calculatorContainer.style.top = newY + "px";
     }
 
     function createDragButton(container) {
