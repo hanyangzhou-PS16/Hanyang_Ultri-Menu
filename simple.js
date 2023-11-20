@@ -180,7 +180,7 @@
         dragButton.style.width = "100%";
         dragButton.style.padding = "10px";
         dragButton.style.marginTop = "10px";
-        dragButton.style.backgroundColor = "yellow";
+        dragButton.style.backgroundColor = "#ff5640";
         dragButton.style.color = "#333";
         dragButton.style.border = "none";
         dragButton.style.borderRadius = "4px";
