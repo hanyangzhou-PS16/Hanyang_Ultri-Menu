@@ -208,28 +208,17 @@
         iframe.style.transition = 'transform 0.5s ease-in-out';
         iframe.style.transform = `translate(${newX}px, ${newY}px)`;
     }
-    function createButton() {
-        var button = document.createElement('button');
-        button.textContent = 'Move Iframe';
-        button.style.position = 'fixed';
-        button.style.top = '20px';
-        button.style.left = '20px';
-        button.style.zIndex = '9999';
-        button.style.backgroundColor = '#469afa';
-        button.style.color = '#fff';
-        button.style.border = 'none';
-        button.style.borderRadius = '4px';
-        button.style.cursor = 'pointer';
-        button.addEventListener('click', moveIframe);
-        document.body.appendChild(button);
-    }
-
-    if (typeof jQuery === 'undefined') {
-        var script = document.createElement('script');
-        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js';
-        script.onload = createButton;
-        document.head.appendChild(script);
-    } else {
-        createButton();
-    }
+    var button = document.createElement('button');
+    button.textContent = 'Move Iframe';
+    button.style.position = 'fixed';
+    button.style.top = '20px';
+    button.style.left = '20px';
+    button.style.zIndex = '9999';
+    button.style.backgroundColor = '#469afa';
+    button.style.color = '#fff';
+    button.style.border = 'none';
+    button.style.borderRadius = '4px';
+    button.style.cursor = 'pointer';
+    button.addEventListener('click', moveIframe);
+    document.body.appendChild(button);
 })();
