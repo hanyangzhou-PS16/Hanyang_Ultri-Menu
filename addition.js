@@ -55,7 +55,7 @@
     iframeMenu.style.top = "10px";
     iframeMenu.style.left = "10px";
     iframeMenu.style.width = "150px";
-    iframeMenu.style.height = "50px";
+    iframeMenu.style.height = "150px";
     iframeMenu.style.border = "2px solid #469afa";
     iframeMenu.style.borderRadius = "8px";
     iframeMenu.style.backgroundColor = "#f0f0f0";
