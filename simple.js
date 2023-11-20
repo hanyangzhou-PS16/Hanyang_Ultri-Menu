@@ -1,7 +1,7 @@
 (function () {
     var calculatorContainer = document.createElement("div");
     calculatorContainer.style.position = "fixed";
-    calculatorContainer.style.top = "300px";
+    calculatorContainer.style.top = "50%";
     calculatorContainer.style.left = "50%";
     calculatorContainer.style.transform = "translate(-50%, -50%)";
     calculatorContainer.style.backgroundColor = "#f0f0f0";
@@ -10,6 +10,7 @@
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
     calculatorContainer.style.zIndex = "9999";
+    calculatorContainer.style.display = "none";
 
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
@@ -49,40 +50,18 @@
     calculatorContainer.appendChild(multiplyButton);
     calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
-    var iframeMenu = document.createElement("iframe");
-    iframeMenu.src = "about:blank";
-    iframeMenu.style.position = "fixed";
-    iframeMenu.style.top = "100px";
-    iframeMenu.style.left = "100px";
-    iframeMenu.style.width = "150px";
-    iframeMenu.style.height = "150px";
-    iframeMenu.style.border = "2px solid #469afa";
-    iframeMenu.style.borderRadius = "8px";
-    iframeMenu.style.backgroundColor = "#f0f0f0";
-    var openCloseButton = document.createElement("button");
-    openCloseButton.textContent = "Open Calculator";
-    openCloseButton.style.width = "20%";
-    openCloseButton.style.height = "20%";
-    openCloseButton.style.backgroundColor = "#469afa";
-    openCloseButton.style.color = "#fff";
-    openCloseButton.style.border = "none";
-    openCloseButton.style.borderRadius = "4px";
-    openCloseButton.style.cursor = "pointer";
-    openCloseButton.addEventListener("click", toggleCalculator);
-    document.body.appendChild(openCloseButton);
-    document.body.appendChild(calculatorContainer)
 
-    var isCalculatorOpen = true;
+    document.body.appendChild(calculatorContainer);
+
+    var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
-            openCloseButton.textContent = "Open Calculator";
         } else {
             calculatorContainer.style.display = "block";
-            openCloseButton.textContent = "Close Calculator";
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
@@ -101,8 +80,11 @@
 
     function handleDragging(e) {
         if (isDragging) {
-            calculatorContainer.style.left = e.clientX - offsetX + "px";
-            calculatorContainer.style.top = e.clientY - offsetY + "px";
+            var newX = e.clientX - offsetX;
+            var newY = e.clientY - offsetY;
+
+            calculatorContainer.style.left = newX + "px";
+            calculatorContainer.style.top = newY + "px";
             calculatorContainer.style.transform = "translate(0, 0)";
         }
     }
@@ -160,4 +142,16 @@
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
     }
+
+    var openCloseButton = document.createElement("button");
+    openCloseButton.textContent = "Open Calculator";
+    openCloseButton.style.width = "20%";
+    openCloseButton.style.height = "20%";
+    openCloseButton.style.backgroundColor = "#469afa";
+    openCloseButton.style.color = "#fff";
+    openCloseButton.style.border = "none";
+    openCloseButton.style.borderRadius = "4px";
+    openCloseButton.style.cursor = "pointer";
+    openCloseButton.addEventListener("click", toggleCalculator);
+    document.body.appendChild(openCloseButton);
 })();
