@@ -60,6 +60,12 @@
     calculatorContainer.style.border = "2px solid #000000";
     calculatorContainer.style.borderRadius = "8px";
 
+    var menuTitle = document.createElement("h2");
+    menuTitle.textContent = "Useful Tools";
+    menuTitle.style.textAlign = "center";
+    menuTitle.style.color = "#333";
+    menuTitle.style.marginBottom = "10px";
+
     var openCloseButton = document.createElement("button");
     openCloseButton.textContent = "Open Calculator";
     openCloseButton.style.width = "120px";
@@ -80,9 +86,10 @@
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
     otherButton.addEventListener("click", function () {
-        alert("Other Button Clicked!");
+        alert("Coming Soon!");
     });
-
+    
+    menuContainer.appendChild(menuTitle);
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(otherButton);
     document.body.appendChild(menuContainer);
