@@ -189,7 +189,7 @@ javascript:(function () {
         button.style.border = "none";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
-        button.addEventListener("click", toggleCalculator); // Fixed the function name here
+        button.addEventListener("click", toggleCalculator);
         return button;
     }
 })();
