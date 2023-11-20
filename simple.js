@@ -1,84 +1,8 @@
 javascript:(function () {
     var isNotepadOpen = false;
-    var calculatorContainer = document.createElement("div");
-    calculatorContainer.style.position = "fixed";
-    calculatorContainer.style.top = "50%";
-    calculatorContainer.style.left = "50%";
-    calculatorContainer.style.transform = "translate(-50%, -50%)";
-    calculatorContainer.style.backgroundColor = "#f0f0f0";
-    calculatorContainer.style.border = "2px solid #469afa";
-    calculatorContainer.style.borderRadius = "8px";
-    calculatorContainer.style.padding = "20px";
-    calculatorContainer.style.cursor = "move";
-    calculatorContainer.style.zIndex = "9998";
-    calculatorContainer.style.display = "none";
-
-    var title = document.createElement("h2");
-    title.textContent = "Simple Calculator";
-    title.style.textAlign = "center";
-    title.style.color = "#333";
-    title.style.marginBottom = "10px";
-    title.style.cursor = "grab";
-    calculatorContainer.appendChild(title);
-
-    var input1 = createInput("text");
-    var input2 = createInput("text");
-    var addButton = createOperationButton("Add", addNumbers);
-    var subtractButton = createOperationButton("Subtract", subtractNumbers);
-    var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
-    var divideButton = createOperationButton("Divide", divideNumbers);
-    var dragButton = createDragButton(calculatorContainer);
-
-    calculatorContainer.appendChild(input1);
-    calculatorContainer.appendChild(input2);
-    calculatorContainer.appendChild(addButton);
-    calculatorContainer.appendChild(subtractButton);
-    calculatorContainer.appendChild(multiplyButton);
-    calculatorContainer.appendChild(divideButton);
-    calculatorContainer.appendChild(dragButton);
-
-    var notepadContainer = document.createElement("div");
-    notepadContainer.style.position = "fixed";
-    notepadContainer.style.top = "50%";
-    notepadContainer.style.left = "50%";
-    notepadContainer.style.transform = "translate(-50%, -50%)";
-    notepadContainer.style.border = "2px solid #469afa";
-    notepadContainer.style.borderRadius = "8px";
-    notepadContainer.style.padding = "20px";
-    notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
-    notepadContainer.style.zIndex = "9999";
-    notepadContainer.style.display = "none";
-
-    var notepadInput = createInput("text");
-    var notepadDragButton = createDragButton(notepadContainer);
-
-    notepadContainer.appendChild(notepadInput);
-    notepadContainer.appendChild(notepadDragButton);
-
-    var menuContainer = document.createElement("div");
-    menuContainer.style.position = "fixed";
-    menuContainer.style.top = "20px";
-    menuContainer.style.left = "20px";
-    menuContainer.style.backgroundColor = "#fff86e";
-    menuContainer.style.width = "300px";
-    menuContainer.style.height = "300px";
-    menuContainer.style.zIndex = "9999";
-    menuContainer.style.border = "2px solid #000000";
-    menuContainer.style.borderRadius = "8px";
-    menuContainer.style.padding = "20px";
-
-    var menuTitle = document.createElement("h2");
-    menuTitle.textContent = "Useful Tools";
-    menuTitle.style.textAlign = "center";
-    menuTitle.style.color = "#333";
-    menuTitle.style.marginBottom = "10px";
-    
-    var openCloseButton = createOpenCloseButton();
-    var otherButton = createOtherButton();
-
-    menuContainer.appendChild(menuTitle);
-    menuContainer.appendChild(openCloseButton);
-    menuContainer.appendChild(otherButton);
+    var calculatorContainerGlobal = createCalculatorContainer();
+    var notepadContainerGlobal = createNotepadContainer();
+    var menuContainerGlobal = createMenuContainer();
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
 
@@ -97,13 +21,65 @@ javascript:(function () {
         isCalculatorOpen = !isCalculatorOpen;
     }
 
+    function toggleNotepad() {
+        console.log("Toggling Notepad");
+        if (isNotepadOpen) {
+            notepadContainer.style.display = "none";
+        } else {
+            notepadContainer.style.display = "block";
+        }
+        isNotepadOpen = !isNotepadOpen;
+    }
+
+    function createCalculatorContainer() {
+        var calculatorContainer = document.createElement("div");
+        calculatorContainer.style.position = "fixed";
+        calculatorContainer.style.top = "50%";
+        calculatorContainer.style.left = "50%";
+        calculatorContainer.style.transform = "translate(-50%, -50%)";
+        calculatorContainer.style.backgroundColor = "#f0f0f0";
+        calculatorContainer.style.border = "2px solid #469afa";
+        calculatorContainer.style.borderRadius = "8px";
+        calculatorContainer.style.padding = "20px";
+        calculatorContainer.style.cursor = "move";
+        calculatorContainer.style.zIndex = "9998";
+        calculatorContainer.style.display = "none";
+        return calculatorContainer;
+    }
+
+    function createNotepadContainer() {
+        var notepadContainer = document.createElement("div");
+        notepadContainer.style.position = "fixed";
+        notepadContainer.style.top = "50%";
+        notepadContainer.style.left = "50%";
+        notepadContainer.style.transform = "translate(-50%, -50%)";
+        notepadContainer.style.border = "2px solid #469afa";
+        notepadContainer.style.borderRadius = "8px";
+        notepadContainer.style.padding = "20px";
+        notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+        notepadContainer.style.zIndex = "9999";
+        notepadContainer.style.display = "none";
+        return notepadContainer;
+    }
+
+    function createMenuContainer() {
+        var menuContainer = document.createElement("div");
+        menuContainer.style.position = "fixed";
+        menuContainer.style.top = "20px";
+        menuContainer.style.left = "20px";
+        menuContainer.style.backgroundColor = "#fff86e";
+        menuContainer.style.width = "300px";
+        menuContainer.style.height = "300px";
+        menuContainer.style.zIndex = "9999";
+        menuContainer.style.border = "2px solid #000000";
+        menuContainer.style.borderRadius = "8px";
+        menuContainer.style.padding = "20px";    }
+
     function startDragging(e, container) {
         isDragging = true;
         offsetX = e.clientX - container.getBoundingClientRect().left;
         offsetY = e.clientY - container.getBoundingClientRect().top;
-        document.addEventListener("mousemove", function (e) {
-            handleDragging(e, container);
-        });
+        document.addEventListener("mousemove", handleDragging);
     }
 
     function stopDragging() {
@@ -111,7 +87,7 @@ javascript:(function () {
         document.removeEventListener("mousemove", handleDragging);
     }
 
-    function handleDragging(e, container) {
+    function handleDragging(e) {
         if (isDragging) {
             var newX = e.clientX - offsetX;
             var newY = e.clientY - offsetY;
@@ -202,7 +178,7 @@ javascript:(function () {
         num2 = parseFloat(num2) || 1;
         return num1 / num2;
     }
-
+    
     function createOpenCloseButton() {
         var button = document.createElement("button");
         button.textContent = "Open Calculator";
@@ -228,15 +204,5 @@ javascript:(function () {
         button.style.cursor = "pointer";
         button.addEventListener("click", toggleNotepad);
         return button;
-    }
-
-    function toggleNotepad() {
-        console.log("Toggling Notepad");
-        if (isNotepadOpen) {
-            notepadContainer.style.display = "none";
-        } else {
-            notepadContainer.style.display = "block";
-        }
-        isNotepadOpen = !isNotepadOpen;
     }
 })();
