@@ -9,6 +9,9 @@ javascript:(function () {
     var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
+    
+    var openCloseButton = createOpenCloseButton();
+    menuContainer.appendChild(openCloseButton);
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
@@ -113,11 +116,9 @@ javascript:(function () {
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
         
-        var openCloseButton = createOpenCloseButton();
         var otherButton = createOtherButton();
 
         menuContainer.appendChild(menuTitle);
-        menuContainer.appendChild(openCloseButton);
         menuContainer.appendChild(otherButton);
 
         return menuContainer;
