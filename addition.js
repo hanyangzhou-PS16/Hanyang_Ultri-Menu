@@ -1,7 +1,7 @@
 (function () {
     var calculatorContainer = document.createElement("div");
     calculatorContainer.style.position = "fixed";
-    calculatorContainer.style.top = "50%";
+    calculatorContainer.style.top = "300px";
     calculatorContainer.style.left = "50%";
     calculatorContainer.style.transform = "translate(-50%, -50%)";
     calculatorContainer.style.backgroundColor = "#f0f0f0";
