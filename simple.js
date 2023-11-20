@@ -111,7 +111,7 @@
         if (isNotepadOpen) {
             document.body.appendChild(notepadContainer);
             isNotepadOpen = true;
-        } else if (isNotepadOpen == true) {
+        } else {
             document.body.removeChild(notepadContainer);
             isNotepadOpen = false;
         }
