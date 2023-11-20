@@ -12,6 +12,47 @@ javascript:(function () {
     calculatorContainer.style.zIndex = "9999";
     calculatorContainer.style.display = "none";
     
+    
+    
+    
+    
+function createOtherButton() {
+    var button = document.createElement("button");
+    button.textContent = "Open Notepad";
+    button.style.width = "120px";
+    button.style.marginTop = "10px";
+    button.style.backgroundColor = "#469afa";
+    button.style.color = "#fff";
+    button.style.border = "none";
+    button.style.borderRadius = "4px";
+    button.style.cursor = "pointer";
+    button.addEventListener("click", toggleNotepad);
+    return button;
+}
+
+function toggleNotepad() {
+    if (isNotepadOpen) {
+        notepadContainer.style.display = "none";
+    } else {
+        notepadContainer.style.display = "block";
+    }
+    isNotepadOpen = !isNotepadOpen;
+}
+})();
+javascript:(function () {
+    var calculatorContainer = document.createElement("div");
+    calculatorContainer.style.position = "fixed";
+    calculatorContainer.style.top = "50%";
+    calculatorContainer.style.left = "50%";
+    calculatorContainer.style.transform = "translate(-50%, -50%)";
+    calculatorContainer.style.backgroundColor = "#f0f0f0";
+    calculatorContainer.style.border = "2px solid #469afa";
+    calculatorContainer.style.borderRadius = "8px";
+    calculatorContainer.style.padding = "20px";
+    calculatorContainer.style.cursor = "move";
+    calculatorContainer.style.zIndex = "9999";
+    calculatorContainer.style.display = "none";
+    
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
@@ -19,6 +60,33 @@ javascript:(function () {
     title.style.marginBottom = "10px";
     title.style.cursor = "grab";
     calculatorContainer.appendChild(title);
+    
+    var input1 = createInput("text");
+    var input2 = createInput("text");
+    var addButton = createOperationButton("Add", addNumbers);
+    var subtractButton = createOperationButton("Subtract", subtractNumbers);
+    var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
+    var divideButton = createOperationButton("Divide", divideNumbers);
+    var dragButton = createDragButton(calculatorContainer);
+    
+    calculatorContainer.appendChild(input1);
+    calculatorContainer.appendChild(input2);
+    calculatorContainer.appendChild(addButton);
+    calculatorContainer.appendChild(subtractButton);
+    calculatorContainer.appendChild(multiplyButton);
+    calculatorContainer.appendChild(divideButton);
+    calculatorContainer.appendChild(dragButton);
+
+    var notepadContainer = document.createElement("div");
+    notepadContainer.style.position = "fixed";
+    notepadContainer.style.top = "50%";
+    notepadContainer.style.left = "50%";
+    notepadContainer.style.transform = "translate(-50%, -50%)";
+    notepadContainer.style.border = "2px solid #469afa";
+    notepadContainer.style.borderRadius = "8px";
+    notepadContainer.style.padding = "20px";
+    notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+    notepadContainer.style.zIndex = "9999";
     
     var input1 = createInput("text");
     var input2 = createInput("text");
@@ -66,6 +134,7 @@ javascript:(function () {
     var isCalculatorOpen = false;
     var isDragging = false;
     var offsetX, offsetY;
+    var isNotepadOpen = false;
     
     function toggleCalculator() {
         if (isCalculatorOpen) {
@@ -178,27 +247,26 @@ javascript:(function () {
         button.addEventListener("click", toggleCalculator);
         return button;
     }
-    
-function createOtherButton() {
-    var button = document.createElement("button");
-    button.textContent = "Open Notepad";
-    button.style.width = "120px";
-    button.style.marginTop = "10px";
-    button.style.backgroundColor = "#469afa";
-    button.style.color = "#fff";
-    button.style.border = "none";
-    button.style.borderRadius = "4px";
-    button.style.cursor = "pointer";
-    button.addEventListener("click", toggleNotepad);
-    return button;
-}
-
-function toggleNotepad() {
-    if (isNotepadOpen) {
-        notepadContainer.style.display = "none";
-    } else {
-        notepadContainer.style.display = "block";
+    function createOtherButton() {
+        var button = document.createElement("button");
+        button.textContent = "Open Notepad";
+        button.style.width = "120px";
+        button.style.marginTop = "10px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", toggleNotepad);
+        return button;
     }
-    isNotepadOpen = !isNotepadOpen;
-}
+
+    function toggleNotepad() {
+        if (isNotepadOpen) {
+            notepadContainer.style.display = "none";
+        } else {
+            notepadContainer.style.display = "block";
+        }
+        isNotepadOpen = !isNotepadOpen;
+    }
 })();
