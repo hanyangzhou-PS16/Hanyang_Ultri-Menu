@@ -87,14 +87,7 @@
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
     otherButton.addEventListener("click", function () {
-        var currentTransform = iframe.style.transform;
-        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
-        var currentX1 = match ? parseInt(match[1]) : 0;
-        var currentY1 = match ? parseInt(match[2]) : 0;
-        var newX1 = currentX1 + 50;
-        var newY1 = currentY1 + 50;
-        otherButton.style.transition = 'transform 0.5s ease-in-out';
-        otherButton.style.transform = `translate(${newX}px, ${newY}px)`;
+        alert("Coming Soon!")
     });
     
     menuContainer.appendChild(menuTitle);
