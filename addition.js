@@ -1,37 +1,52 @@
 (function () {
-    var iframe = document.createElement("iframe");
-    iframe.style.position = "fixed";
-    iframe.style.top = "50%";
-    iframe.style.left = "50%";
-    iframe.style.transform = "translate(-50%, -50%)";
-    iframe.style.border = "none";
-    iframe.style.width = "400px";
-    iframe.style.height = "400px";
-    document.body.appendChild(iframe);
+    var mainIframe = document.createElement("iframe");
+    mainIframe.style.position = "fixed";
+    mainIframe.style.top = "50%";
+    mainIframe.style.left = "50%";
+    mainIframe.style.transform = "translate(-50%, -50%)";
+    mainIframe.style.border = "none";
+    mainIframe.style.width = "400px";
+    mainIframe.style.height = "400px";
+    document.body.appendChild(mainIframe);
 
-    var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDocument.body.style.margin = "0";
-    var calculatorContainer = iframeDocument.createElement("div");
+    var mainIframeDocument = mainIframe.contentDocument || mainIframe.contentWindow.document;
+
+    var yellowIframe = mainIframeDocument.createElement("iframe");
+    yellowIframe.style.position = "absolute";
+    yellowIframe.style.top = "0";
+    yellowIframe.style.left = "0";
+    yellowIframe.style.width = "100%";
+    yellowIframe.style.height = "100%";
+    yellowIframe.style.backgroundColor = "yellow";
+    yellowIframe.style.opacity = "0.6";
+    yellowIframe.style.pointerEvents = "none";
+    mainIframeDocument.body.appendChild(yellowIframe);
+
+    var calculatorContainer = mainIframeDocument.createElement("div");
+    calculatorContainer.style.position = "absolute";
+    calculatorContainer.style.top = "50%";
+    calculatorContainer.style.left = "50%";
+    calculatorContainer.style.transform = "translate(-50%, -50%)";
     calculatorContainer.style.backgroundColor = "#f0f0f0";
     calculatorContainer.style.border = "2px solid #469afa";
     calculatorContainer.style.borderRadius = "8px";
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
 
-    var title = iframeDocument.createElement("h2");
+    var title = mainIframeDocument.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
     title.style.color = "#333";
     title.style.marginBottom = "10px";
     title.style.cursor = "grab";
     title.addEventListener("mousedown", startDragging);
-    iframeDocument.addEventListener("mouseup", stopDragging);
+    mainIframeDocument.addEventListener("mouseup", stopDragging);
     calculatorContainer.appendChild(title);
 
-    var input1 = createInput("text", iframeDocument);
-    var input2 = createInput("text", iframeDocument);
+    var input1 = createInput("text", mainIframeDocument);
+    var input2 = createInput("text", mainIframeDocument);
 
-    var enterButton = iframeDocument.createElement("button");
+    var enterButton = mainIframeDocument.createElement("button");
     enterButton.textContent = "Add";
     enterButton.style.width = "100%";
     enterButton.style.padding = "10px";
@@ -49,7 +64,7 @@
     calculatorContainer.appendChild(input1);
     calculatorContainer.appendChild(input2);
     calculatorContainer.appendChild(enterButton);
-    iframeDocument.body.appendChild(calculatorContainer);
+    mainIframeDocument.body.appendChild(calculatorContainer);
 
     var isDragging = false;
     var offsetX, offsetY;
@@ -58,12 +73,12 @@
         isDragging = true;
         offsetX = e.clientX - calculatorContainer.getBoundingClientRect().left;
         offsetY = e.clientY - calculatorContainer.getBoundingClientRect().top;
-        iframeDocument.addEventListener("mousemove", handleDragging);
+        mainIframeDocument.addEventListener("mousemove", handleDragging);
     }
 
     function stopDragging() {
         isDragging = false;
-        iframeDocument.removeEventListener("mousemove", handleDragging);
+        mainIframeDocument.removeEventListener("mousemove", handleDragging);
     }
 
     function handleDragging(e) {
