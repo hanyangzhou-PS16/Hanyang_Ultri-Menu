@@ -49,7 +49,6 @@
     calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
     
-    // Create the iframe menu
     var iframeMenu = document.createElement("iframe");
     iframeMenu.src = "about:blank";
     iframeMenu.style.position = "fixed";
@@ -75,7 +74,6 @@
     iframeMenu.appendChild(openCloseButton);
     document.body.appendChild(iframeMenu);
 
-    // Initial state of the calculator
     var isCalculatorOpen = true;
 
     function toggleCalculator() {
