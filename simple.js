@@ -2,16 +2,18 @@
     var isNotepadOpen = false;
     var calculatorContainer = createCalculatorContainer();
     var notepadContainer = createNotepadContainer();
+    var isCalculatorOpen = false;
+    var isDragging = false;
+    var offsetX, offsetY;
+
+    var otherButton = createOtherButton();
+    var openCloseButton = createOpenCloseButton();
     var menuContainer = createMenuContainer();
+
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
     document.body.appendChild(notepadContainer);
 
-    var isCalculatorOpen = false;
-    var isDragging = false;
-    var offsetX, offsetY;
-    var otherButton = createOtherButton();
-    var openCloseButton = createOpenCloseButton();
     menuContainer.appendChild(openCloseButton);
 
     function toggleCalculator() {
