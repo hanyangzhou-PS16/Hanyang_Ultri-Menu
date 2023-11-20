@@ -185,10 +185,13 @@
         dragButton.style.border = "none";
         dragButton.style.borderRadius = "4px";
         dragButton.style.cursor = "pointer";
+        
         dragButton.addEventListener("mousedown", function (e) {
             startDragging(e, container);
         });
+        
         dragButton.addEventListener("mouseup", stopDragging);
+        
         return dragButton;
     }
 
