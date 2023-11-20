@@ -203,7 +203,7 @@
         var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
         var currentX = match ? parseInt(match[1]) : 0;
         var currentY = match ? parseInt(match[2]) : 0;
-        var newX = currentX + 50; // Adjust the values as needed
+        var newX = currentX + 50;
         var newY = currentY + 50;
         iframe.style.transition = 'transform 0.5s ease-in-out';
         iframe.style.transform = `translate(${newX}px, ${newY}px)`;
