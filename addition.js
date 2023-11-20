@@ -9,7 +9,7 @@
     calculatorContainer.style.borderRadius = "8px";
     calculatorContainer.style.padding = "20px";
     calculatorContainer.style.cursor = "move";
-    
+
     var title = document.createElement("h2");
     title.textContent = "Simple Calculator";
     title.style.textAlign = "center";
@@ -19,15 +19,15 @@
     title.addEventListener("mousedown", startDragging);
     document.addEventListener("mouseup", stopDragging);
     calculatorContainer.appendChild(title);
-    
+
     var input1 = createInput("text");
     var input2 = createInput("text");
-    
+
     var addButton = createOperationButton("Add", addNumbers);
     var subtractButton = createOperationButton("Subtract", subtractNumbers);
     var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
     var divideButton = createOperationButton("Divide", divideNumbers);
-    
+
     var dragButton = document.createElement("button");
     dragButton.textContent = "Drag";
     dragButton.style.width = "100%";
@@ -40,7 +40,7 @@
     dragButton.style.cursor = "pointer";
     dragButton.addEventListener("mousedown", startDragging);
     dragButton.addEventListener("mouseup", stopDragging);
-    
+
     calculatorContainer.appendChild(input1);
     calculatorContainer.appendChild(input2);
     calculatorContainer.appendChild(addButton);
@@ -48,7 +48,7 @@
     calculatorContainer.appendChild(multiplyButton);
     calculatorContainer.appendChild(divideButton);
     calculatorContainer.appendChild(dragButton);
-    
+
     var iframeMenu = document.createElement("iframe");
     iframeMenu.src = "about:blank";
     iframeMenu.style.position = "fixed";
@@ -59,7 +59,7 @@
     iframeMenu.style.border = "2px solid #469afa";
     iframeMenu.style.borderRadius = "8px";
     iframeMenu.style.backgroundColor = "#f0f0f0";
-    
+
     var openCloseButton = document.createElement("button");
     openCloseButton.textContent = "Open Calculator";
     openCloseButton.style.width = "100%";
@@ -70,7 +70,7 @@
     openCloseButton.style.borderRadius = "4px";
     openCloseButton.style.cursor = "pointer";
     openCloseButton.addEventListener("click", toggleCalculator);
-    
+
     iframeMenu.appendChild(openCloseButton);
     document.body.appendChild(iframeMenu);
 
@@ -125,3 +125,39 @@
         button.style.width = "100%";
         button.style.padding = "10px";
         button.style.marginTop = "10px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", function () {
+            var result = operation(input1.value, input2.value);
+            alert("Answer: " + result);
+        });
+        return button;
+    }
+
+    function addNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 0;
+        return num1 + num2;
+    }
+
+    function subtractNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 0;
+        return num1 - num2;
+    }
+
+    function multiplyNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 0;
+        return num1 * num2;
+    }
+
+    function divideNumbers(num1, num2) {
+        num1 = parseFloat(num1) || 0;
+        num2 = parseFloat(num2) || 1;
+        return num1 / num2;
+    }
+})();
