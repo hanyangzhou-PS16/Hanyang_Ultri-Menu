@@ -196,3 +196,40 @@
         return num1 / num2;
     }
 })();
+(function() {
+    function moveIframe() {
+        var iframe = document.createElement("iframe");
+        var currentTransform = iframe.style.transform;
+        var match = currentTransform.match(/translate\((-?\d+)px,\s*(-?\d+)px\)/);
+        var currentX = match ? parseInt(match[1]) : 0;
+        var currentY = match ? parseInt(match[2]) : 0;
+        var newX = currentX + 50; // Adjust the values as needed
+        var newY = currentY + 50;
+        iframe.style.transition = 'transform 0.5s ease-in-out';
+        iframe.style.transform = `translate(${newX}px, ${newY}px)`;
+    }
+    function createButton() {
+        var button = document.createElement('button');
+        button.textContent = 'Move Iframe';
+        button.style.position = 'fixed';
+        button.style.top = '20px';
+        button.style.left = '20px';
+        button.style.zIndex = '9999';
+        button.style.backgroundColor = '#469afa';
+        button.style.color = '#fff';
+        button.style.border = 'none';
+        button.style.borderRadius = '4px';
+        button.style.cursor = 'pointer';
+        button.addEventListener('click', moveIframe);
+        document.body.appendChild(button);
+    }
+
+    if (typeof jQuery === 'undefined') {
+        var script = document.createElement('script');
+        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js'; // Replace with the desired jQuery version
+        script.onload = createButton;
+        document.head.appendChild(script);
+    } else {
+        createButton();
+    }
+})();
