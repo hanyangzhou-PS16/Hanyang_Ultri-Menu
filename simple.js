@@ -75,9 +75,20 @@
     openCloseButton.style.border = "none";
     openCloseButton.style.borderRadius = "4px";
     openCloseButton.style.cursor = "pointer";
-    openCloseButton.addEventListener("click", toggleCalculator);
+    openCloseButton.addEventListener("click", toggleNotepad);
     
     var isNotepadOpen = false;
+    var notepadContainer = document.createElement("div");
+    notepadContainer.style.position = "fixed";
+    notepadContainer.style.top = "50%";
+    notepadContainer.style.left = "50%";
+    notepadContainer.style.transform = "translate(-50%, -50%)";
+    notepadContainer.style.border = "2px solid #469afa";
+    notepadContainer.style.borderRadius = "8px";
+    notepadContainer.style.padding = "20px";
+    notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
+    notepadContainer.style.zIndex = "9999";
+    
     function toggleNotepad() {
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
@@ -97,17 +108,6 @@
     otherButton.style.borderRadius = "4px";
     otherButton.style.cursor = "pointer";
     otherButton.addEventListener("click", toggleNotepad)
-        
-    var notepadContainer = document.createElement("div");
-    notepadContainer.style.position = "fixed";
-    notepadContainer.style.top = "50%";
-    notepadContainer.style.left = "50%";
-    notepadContainer.style.transform = "translate(-50%, -50%)";
-    notepadContainer.style.border = "2px solid #469afa";
-    notepadContainer.style.borderRadius = "8px";
-    notepadContainer.style.padding = "20px";
-    notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
-    notepadContainer.style.zIndex = "9999";
     
     var notepad = document.createElement("textarea");
     notepad.style.width = "100%";
