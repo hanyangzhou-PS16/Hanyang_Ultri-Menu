@@ -1,5 +1,54 @@
-javascript:(function () {var calculatorContainer = document.createElement("div");calculatorContainer.style.position = "fixed";calculatorContainer.style.top = "300px";calculatorContainer.style.left = "50%";calculatorContainer.style.transform = "translate(-50%, -50%)";calculatorContainer.style.backgroundColor = "#f0f0f0";calculatorContainer.style.border = "2px solid #469afa";calculatorContainer.style.borderRadius = "8px";calculatorContainer.style.padding = "20px";calculatorContainer.style.cursor = "move";calculatorContainer.style.zIndex = "9999";var title = document.createElement("h2");title.textContent = "Simple Calculator";title.style.textAlign = "center";title.style.color = "#333";title.style.marginBottom = "10px";title.style.cursor = "grab";title.addEventListener("mousedown", startDragging);document.addEventListener("mouseup", stopDragging);calculatorContainer.appendChild(title);var input1 = createInput("text");var input2 = createInput("text");var addButton = createOperationButton("Add", addNumbers);var subtractButton = createOperationButton("Subtract", subtractNumbers);var multiplyButton = createOperationButton("Multiply", multiplyNumbers);var divideButton = createOperationButton("Divide", divideNumbers);var dragButton = document.createElement("button");dragButton.textContent = "Drag";dragButton.style.width = "100%";dragButton.style.padding = "10px";dragButton.style.marginTop = "10px";dragButton.style.backgroundColor = "yellow";dragButton.style.color = "#333";dragButton.style.border = "none";dragButton.style.borderRadius = "4px";dragButton.style.cursor = "pointer";dragButton.addEventListener("mousedown", startDragging);dragButton.addEventListener("mouseup", stopDragging);calculatorContainer.appendChild(input1);calculatorContainer.appendChild(input2);calculatorContainer.appendChild(addButton);calculatorContainer.appendChild(subtractButton);calculatorContainer.appendChild(multiplyButton);calculatorContainer.appendChild(divideButton);calculatorContainer.appendChild(dragButton);
+(function () {
+    var calculatorContainer = document.createElement("div");
+    calculatorContainer.style.position = "fixed";
+    calculatorContainer.style.top = "300px";
+    calculatorContainer.style.left = "50%";
+    calculatorContainer.style.transform = "translate(-50%, -50%)";
+    calculatorContainer.style.backgroundColor = "#f0f0f0";
+    calculatorContainer.style.border = "2px solid #469afa";
+    calculatorContainer.style.borderRadius = "8px";
+    calculatorContainer.style.padding = "20px";
+    calculatorContainer.style.cursor = "move";
+    calculatorContainer.style.zIndex = "9999";
 
+    var title = document.createElement("h2");
+    title.textContent = "Simple Calculator";
+    title.style.textAlign = "center";
+    title.style.color = "#333";
+    title.style.marginBottom = "10px";
+    title.style.cursor = "grab";
+    title.addEventListener("mousedown", startDragging);
+    document.addEventListener("mouseup", stopDragging);
+    calculatorContainer.appendChild(title);
+
+    var input1 = createInput("text");
+    var input2 = createInput("text");
+
+    var addButton = createOperationButton("Add", addNumbers);
+    var subtractButton = createOperationButton("Subtract", subtractNumbers);
+    var multiplyButton = createOperationButton("Multiply", multiplyNumbers);
+    var divideButton = createOperationButton("Divide", divideNumbers);
+
+    var dragButton = document.createElement("button");
+    dragButton.textContent = "Drag";
+    dragButton.style.width = "100%";
+    dragButton.style.padding = "10px";
+    dragButton.style.marginTop = "10px";
+    dragButton.style.backgroundColor = "yellow";
+    dragButton.style.color = "#333";
+    dragButton.style.border = "none";
+    dragButton.style.borderRadius = "4px";
+    dragButton.style.cursor = "pointer";
+    dragButton.addEventListener("mousedown", startDragging);
+    dragButton.addEventListener("mouseup", stopDragging);
+
+    calculatorContainer.appendChild(input1);
+    calculatorContainer.appendChild(input2);
+    calculatorContainer.appendChild(addButton);
+    calculatorContainer.appendChild(subtractButton);
+    calculatorContainer.appendChild(multiplyButton);
+    calculatorContainer.appendChild(divideButton);
+    calculatorContainer.appendChild(dragButton);
     var iframeMenu = document.createElement("iframe");
     iframeMenu.src = "about:blank";
     iframeMenu.style.position = "fixed";
