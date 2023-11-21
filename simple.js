@@ -3,8 +3,10 @@
     var calculatorContainer = createCalculatorContainer();
     var notepadContainer = createNotepadContainer();
     var isCalculatorOpen = false;
-    var isDragging = false;
-    var offsetX, offsetY;
+    var isDraggingCalculator = false;
+    var isDraggingNotepad = false;
+    var offsetXCalculator, offsetYCalculator;
+    var offsetXNotepad, offsetYNotepad;
 
     var otherButton = createOtherButton();
     var openCloseButton = createOpenCloseButton();
@@ -52,7 +54,7 @@
         button.addEventListener("click", toggleNotepad);
         return button;
     }
-    
+
     function createCalculatorContainer() {
         var calculatorContainer = document.createElement("div");
         calculatorContainer.style.position = "fixed";
@@ -81,7 +83,7 @@
         var subtractButton = createOperationButton("Subtract", subtractNumbers, input1, input2);
         var multiplyButton = createOperationButton("Multiply", multiplyNumbers, input1, input2);
         var divideButton = createOperationButton("Divide", divideNumbers, input1, input2);
-        var dragButton = createDragButton(calculatorContainer);
+        var dragButton = createDragButton(calculatorContainer, "calculator");
 
         calculatorContainer.appendChild(input1);
         calculatorContainer.appendChild(input2);
@@ -109,7 +111,7 @@
         notepadContainer.style.display = "none";
 
         var notepadInput = createInput("text");
-        var notepadDragButton = createDragButton(notepadContainer);
+        var notepadDragButton = createDragButton(notepadContainer, "notepad");
 
         notepadContainer.appendChild(notepadInput);
         notepadContainer.appendChild(notepadDragButton);
@@ -142,39 +144,47 @@
         return menuContainer;
     }
 
-    function startDragging(e, container) {
-        isDragging = true;
-        offsetX = e.clientX - container.getBoundingClientRect().left;
-        offsetY = e.clientY - container.getBoundingClientRect().top;
+    function startDragging(e, container, type) {
+        if (type === "calculator") {
+            isDraggingCalculator = true;
+            offsetXCalculator = e.clientX - container.getBoundingClientRect().left;
+            offsetYCalculator = e.clientY - container.getBoundingClientRect().top;
+        } else if (type === "notepad") {
+            isDraggingNotepad = true;
+            offsetXNotepad = e.clientX - container.getBoundingClientRect().left;
+            offsetYNotepad = e.clientY - container.getBoundingClientRect().top;
+        }
+
         document.addEventListener("mousemove", handleDragging);
     }
 
     function stopDragging() {
-        isDragging = false;
+        isDraggingCalculator = false;
+        isDraggingNotepad = false;
         document.removeEventListener("mousemove", handleDragging);
     }
 
     function handleDragging(e) {
-        if (isDragging) {
-            var newX = e.clientX - offsetX;
-            var newY = e.clientY - offsetY;
+        if (isDraggingCalculator) {
+            var newX = e.clientX - offsetXCalculator;
+            var newY = e.clientY - offsetYCalculator;
 
             calculatorContainer.style.left = newX + "px";
             calculatorContainer.style.top = newY + "px";
             calculatorContainer.style.transform = "translate(0, 0)";
         }
 
-        var maxX = window.innerWidth - calculatorContainer.offsetWidth;
-        var maxY = window.innerHeight - calculatorContainer.offsetHeight;
+        if (isDraggingNotepad) {
+            var newX = e.clientX - offsetXNotepad;
+            var newY = e.clientY - offsetYNotepad;
 
-        newX = Math.min(Math.max(newX, 0), maxX);
-        newY = Math.min(Math.max(newY, 0), maxY);
-
-        calculatorContainer.style.left = newX + "px";
-        calculatorContainer.style.top = newY + "px";
+            notepadContainer.style.left = newX + "px";
+            notepadContainer.style.top = newY + "px";
+            notepadContainer.style.transform = "translate(0, 0)";
+        }
     }
 
-    function createDragButton(container) {
+    function createDragButton(container, type) {
         var dragButton = document.createElement("button");
         dragButton.textContent = "Drag";
         dragButton.style.width = "100%";
@@ -185,13 +195,13 @@
         dragButton.style.border = "none";
         dragButton.style.borderRadius = "4px";
         dragButton.style.cursor = "pointer";
-        
+
         dragButton.addEventListener("mousedown", function (e) {
-            startDragging(e, container);
+            startDragging(e, container, type);
         });
-        
+
         dragButton.addEventListener("mouseup", stopDragging);
-        
+
         return dragButton;
     }
 
