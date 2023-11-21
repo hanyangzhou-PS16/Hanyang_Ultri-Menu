@@ -25,6 +25,87 @@
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
     menuContainer.appendChild(dateTimeContainer);
+
+    // Game variables
+    var gameInterval;
+    var obstacles = [];
+
+    function startGame() {
+        resetGame();
+        gameInterval = setInterval(updateGame, 20);
+    }
+
+    function resetGame() {
+        box.style.top = "50px";
+        obstacles = [];
+    }
+
+    function stopGame() {
+        clearInterval(gameInterval);
+        resetGame();
+    }
+
+    function updateGame() {
+        moveObstacles();
+        checkCollision();
+    }
+
+    function moveObstacles() {
+        for (var i = 0; i < obstacles.length; i++) {
+            obstacles[i].y += 2; // Adjust the speed of obstacles
+            obstacles[i].element.style.top = obstacles[i].y + "px";
+
+            // Remove obstacles that have moved off-screen
+            if (obstacles[i].y > window.innerHeight) {
+                obstacles[i].element.parentNode.removeChild(obstacles[i].element);
+                obstacles.splice(i, 1);
+                i--;
+            }
+        }
+
+        // Add new obstacles randomly
+        if (Math.random() < 0.02) {
+            var obstacle = createObstacle();
+            obstacles.push(obstacle);
+            document.body.appendChild(obstacle.element);
+        }
+    }
+
+    function checkCollision() {
+        for (var i = 0; i < obstacles.length; i++) {
+            if (
+                box.offsetLeft < obstacles[i].x + obstacles[i].width &&
+                box.offsetLeft + box.offsetWidth > obstacles[i].x &&
+                box.offsetTop < obstacles[i].y + obstacles[i].height &&
+                box.offsetTop + box.offsetHeight > obstacles[i].y
+            ) {
+                stopGame();
+                alert("Game Over! You collided with an obstacle.");
+                return;
+            }
+        }
+    }
+
+    function createObstacle() {
+        var obstacle = document.createElement("div");
+        obstacle.className = "obstacle";
+        obstacle.style.width = "30px";
+        obstacle.style.height = "30px";
+        obstacle.style.backgroundColor = "#ff5640";
+        obstacle.style.position = "absolute";
+        obstacle.style.left = Math.random() * (window.innerWidth - 30) + "px";
+        obstacle.style.top = "-30px"; // Start above the viewport
+        document.body.appendChild(obstacle);
+
+        return {
+            element: obstacle,
+            x: obstacle.offsetLeft,
+            y: obstacle.offsetTop,
+            width: obstacle.offsetWidth,
+            height: obstacle.offsetHeight,
+        };
+    }
+
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
@@ -35,6 +116,7 @@
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
+
     function toggleNotepad() {
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
@@ -45,6 +127,7 @@
         }
         isNotepadOpen = !isNotepadOpen;
     }
+
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
@@ -57,6 +140,7 @@
         box.style.display = "none";
         return box;
     }
+
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
         var step = 2;
@@ -66,6 +150,7 @@
             box.style.left = currentLeft + step + "px";
         }
     }
+
     function createButton(label, direction) {
         var button = document.createElement("button");
         button.textContent = label;
@@ -90,6 +175,7 @@
         });
         return button;
     }
+
     function createGameContainer() {
         var gameContainer = document.createElement("div");
         gameContainer.style.position = "fixed";
@@ -104,11 +190,14 @@
         gameContainer.style.display = "none";
         gameContainer.appendChild(createButton("Left", "left"));
         gameContainer.appendChild(createButton("Right", "right"));
+        gameContainer.appendChild(createButton("Start Game", "start"));
         return gameContainer;
     }
+
     function toggleGameContainer() {
         containerG.style.display = containerG.style.display === "none" ? "block" : "none";
     }
+
     function createNotepadButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
@@ -123,6 +212,7 @@
         button.addEventListener("click", toggleNotepad);
         return button;
     }
+
     function createGameButton() {
         var button = document.createElement("button");
         button.textContent = "Play Game";
@@ -137,9 +227,11 @@
         button.addEventListener("click", function () {
             toggleGameContainer();
             toggleBoxVisibility();
+            startGame(); // Start the game when the button is clicked
         });
         return button;
     }
+
     function toggleBoxVisibility() {
         if (box.style.display === "none" || box.style.display === "") {
             box.style.display = "block";
@@ -147,6 +239,7 @@
             box.style.display = "none";
         }
     }
+
     function createCalculatorContainer() {
         var calculatorContainer = document.createElement("div");
         calculatorContainer.style.position = "fixed";
@@ -183,6 +276,7 @@
         calculatorContainer.appendChild(dragButton);
         return calculatorContainer;
     }
+
     function createNotepadContainer() {
         var notepadContainer = document.createElement("div");
         notepadContainer.style.position = "fixed";
@@ -202,6 +296,7 @@
         notepadContainer.appendChild(notepadDragButton);
         return notepadContainer;
     }
+
     function createTextarea() {
         var textarea = document.createElement("textarea");
         textarea.style.width = "100%";
@@ -213,6 +308,7 @@
         textarea.style.borderRadius = "4px";
         return textarea;
     }
+
     function createMenuContainer() {
         var menuContainer = document.createElement("div");
         menuContainer.style.position = "fixed";
@@ -239,6 +335,7 @@
         menuContainer.appendChild(notepadButton);
         return menuContainer;
     }
+
     function createDateTimeContainer() {
         var dateTimeContainer = document.createElement("div");
         dateTimeContainer.style.marginTop = "20px";
@@ -269,6 +366,7 @@
         dateTimeContainer.appendChild(timeText);
         return dateTimeContainer;
     }
+
     function startDragging(e, container, type) {
         if (type === "calculator") {
             isDraggingCalculator = true;
@@ -395,4 +493,3 @@
         button.addEventListener("click", toggleCalculator);
         return button;
     }
-})();
