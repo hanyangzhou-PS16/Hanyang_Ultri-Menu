@@ -61,7 +61,7 @@
 
     function moveObstacles() {
         for (var i = 0; i < obstacles.length; i++) {
-            obstacles[i].y += 2; // Adjust the speed of obstacles
+            obstacles[i].y += 2;
             obstacles[i].element.style.top = obstacles[i].y + "px";
             if (obstacles[i].y > window.innerHeight) {
                 obstacles[i].element.parentNode.removeChild(obstacles[i].element);
