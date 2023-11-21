@@ -319,3 +319,43 @@
         return button;
     }
 })();
+(function () {
+    var box = createBox();
+    document.body.appendChild(box);
+    function createBox() {
+        var box = document.createElement("div");
+        box.style.width = "50px";
+        box.style.height = "50px";
+        box.style.backgroundColor = "#4682b4";
+        box.style.position = "absolute";
+        box.style.left = "50%";
+        box.style.transform = "translateX(-50%)";
+        box.style.top = "50px";
+        return box;
+    }
+    function moveBox(direction) {
+        var currentLeft = parseInt(box.style.left);
+        var step = 10;
+
+        if (direction === "left") {
+            box.style.left = currentLeft - step + "px";
+        } else if (direction === "right") {
+            box.style.left = currentLeft + step + "px";
+        }
+    }
+    function createButton(label, direction) {
+        var button = document.createElement("button");
+        button.textContent = label;
+        button.style.margin = "5px";
+        button.style.padding = "5px 10px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", function () {
+            moveBox(direction);
+        });
+        return button;
+    }
+    var leftButton = createButton("Left", "left");
+    var rightButton = createButton("Right", "right");
+    document.body.appendChild(leftButton);
+    document.body.appendChild(rightButton);
+})();
