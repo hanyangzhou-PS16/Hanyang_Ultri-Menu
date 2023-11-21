@@ -16,6 +16,7 @@
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
     document.body.appendChild(notepadContainer);
+
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
 
@@ -31,6 +32,7 @@
     }
 
     function toggleNotepad() {
+        console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
             notepadButton.textContent = "Open Notepad";
@@ -66,7 +68,7 @@
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", function() {
-            alert();
+            alert("Game button clicked!");
         });
         return button;
     }
@@ -112,7 +114,7 @@
         return calculatorContainer;
     }
 
-        function createNotepadContainer() {
+    function createNotepadContainer() {
         var notepadContainer = document.createElement("div");
         notepadContainer.style.position = "fixed";
         notepadContainer.style.top = "50%";
@@ -166,7 +168,14 @@
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
 
+        var logoImg = document.createElement("img");
+        logoImg.src = "Useful Tools-logos_black.png";
+        logoImg.alt = "Logo";
+        logoImg.style.width = "100%";
+        logoImg.style.marginBottom = "10px";
+
         menuContainer.appendChild(menuTitle);
+        menuContainer.appendChild(logoImg);
         menuContainer.appendChild(notepadButton);
 
         return menuContainer;
