@@ -181,8 +181,8 @@
         dateTimeContainer.style.marginTop = "20px";
         dateTimeContainer.style.textAlign = "center";
         var dateTimeText = document.createElement("p");
-        dateTimeText.style.margin = "0";
-        dateTimeText.style.fontSize = "16px";
+        dateTimeText.style.margin = "0px";
+        dateTimeText.style.fontSize = "24px";
 
         function updateDateTime() {
             var now = new Date();
