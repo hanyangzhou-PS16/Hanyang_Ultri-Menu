@@ -25,7 +25,6 @@
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
     menuContainer.appendChild(dateTimeContainer);
-
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
@@ -36,7 +35,6 @@
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
-
     function toggleNotepad() {
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
@@ -47,7 +45,6 @@
         }
         isNotepadOpen = !isNotepadOpen;
     }
-
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
@@ -60,17 +57,15 @@
         box.style.display = "none";
         return box;
     }
-
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
-        var step = 5;
+        var step = 2;
         if (direction === "left") {
             box.style.left = currentLeft - step + "px";
         } else if (direction === "right") {
             box.style.left = currentLeft + step + "px";
         }
     }
-
     function createButton(label, direction) {
         var button = document.createElement("button");
         button.textContent = label;
@@ -93,7 +88,6 @@
         });
         return button;
     }
-
     function createGameContainer() {
         var gameContainer = document.createElement("div");
         gameContainer.style.position = "fixed";
@@ -101,7 +95,7 @@
         gameContainer.style.left = "20px";
         gameContainer.style.backgroundColor = "#fff86e";
         gameContainer.style.width = "120px";
-        gameContainer.style.zIndex = "10000";
+        gameContainer.style.zIndex = "9999";
         gameContainer.style.border = "2px solid #000000";
         gameContainer.style.borderRadius = "8px";
         gameContainer.style.padding = "10px";
@@ -110,11 +104,9 @@
         gameContainer.appendChild(createButton("Right", "right"));
         return gameContainer;
     }
-
     function toggleGameContainer() {
         containerG.style.display = containerG.style.display === "none" ? "block" : "none";
     }
-
     function createNotepadButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
@@ -129,7 +121,6 @@
         button.addEventListener("click", toggleNotepad);
         return button;
     }
-
     function createGameButton() {
         var button = document.createElement("button");
         button.textContent = "Play Game";
@@ -147,7 +138,6 @@
         });
         return button;
     }
-
     function toggleBoxVisibility() {
         if (box.style.display === "none" || box.style.display === "") {
             box.style.display = "block";
@@ -155,7 +145,6 @@
             box.style.display = "none";
         }
     }
-
     function createCalculatorContainer() {
         var calculatorContainer = document.createElement("div");
         calculatorContainer.style.position = "fixed";
@@ -234,6 +223,7 @@
         menuContainer.style.border = "2px solid #000000";
         menuContainer.style.borderRadius = "8px";
         menuContainer.style.padding = "20px";
+        menuContainer.style.display = "block"; // Initially visible
         menuContainer.addEventListener("mousedown", function (e) {
             startDragging(e, menuContainer, "menu");
         });
@@ -314,7 +304,6 @@
             notepadContainer.style.top = newY + "px";
             notepadContainer.style.transform = "translate(0, 0)";
         }
-
         if (isDraggingMenu) {
             var newX = e.clientX - offsetXMenu;
             var newY = e.clientY - offsetYMenu;
