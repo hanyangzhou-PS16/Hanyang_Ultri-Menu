@@ -168,10 +168,7 @@
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
 
-        var iframe1 = createIframe("https://youtube.com");
-
         menuContainer.appendChild(menuTitle);
-        menuContainer.appendChild(iframe1);
         menuContainer.appendChild(notepadButton);
 
         return menuContainer;
