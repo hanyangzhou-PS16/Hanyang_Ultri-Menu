@@ -47,7 +47,8 @@
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
         button.style.width = "130px";
-        button.style.marginTop = "25px";
+        button.style.marginTop = "10px";
+        button.style.marginBottom = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "2px solid #87CEFA";
@@ -61,7 +62,8 @@
         var button = document.createElement("button");
         button.textContent = "Play Game";
         button.style.width = "130px";
-        button.style.marginTop = "25px";
+        button.style.marginTop = "10px";
+        button.style.marginBottom = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "2px solid #87CEFA";
@@ -220,6 +222,7 @@
         dragButton.style.width = "100%";
         dragButton.style.padding = "10px";
         dragButton.style.marginTop = "10px";
+        dragButton.style.marginBottom = "10px";
         dragButton.style.backgroundColor = "#ff5640";
         dragButton.style.color = "#333";
         dragButton.style.border = "2px solid #87CEFA";
@@ -241,6 +244,7 @@
         input.style.width = "100%";
         input.style.padding = "10px";
         input.style.marginTop = "10px";
+        input.style.marginBottom = "10px";
         input.style.boxSizing = "border-box";
         input.style.border = "1px solid #ccc";
         input.style.borderRadius = "4px";
@@ -253,6 +257,7 @@
         button.style.width = "100%";
         button.style.padding = "10px";
         button.style.marginTop = "10px";
+        button.style.marginBottom = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "2px solid #87CEFA";
