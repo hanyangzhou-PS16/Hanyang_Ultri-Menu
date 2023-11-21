@@ -174,17 +174,6 @@
         return menuContainer;
     }
 
-    function createIframe(src) {
-        var iframe = document.createElement("iframe");
-        iframe.src = src;
-        iframe.style.width = "15%";
-        iframe.style.height = "100px";
-        iframe.style.border = "1px solid #87CEFA";
-        iframe.style.borderRadius = "4px";
-        iframe.style.marginTop = "10px";
-        return iframe;
-    }
-
     function startDragging(e, container, type) {
         if (type === "calculator") {
             isDraggingCalculator = true;
