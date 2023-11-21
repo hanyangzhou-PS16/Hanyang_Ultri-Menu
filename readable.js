@@ -8,7 +8,7 @@
     var offsetXCalculator, offsetYCalculator;
     var offsetXNotepad, offsetYNotepad;
 
-    var otherButton = createNotepadButton();
+    var notepadButton = createNotepadButton();
     var openCloseButton = createOpenCloseButton();
     var menuContainer = createMenuContainer();
 
@@ -33,10 +33,10 @@
         console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
-            otherButton.textContent = "Open Notepad";
+            notepadButton.textContent = "Open Notepad";
         } else {
             notepadContainer.style.display = "block";
-            otherButton.textContent = "Close Notepad";
+            notepadButton.textContent = "Close Notepad";
         }
         isNotepadOpen = !isNotepadOpen;
     }
@@ -57,7 +57,7 @@
     
     function createGameButton() {
         var button = document.createElement("button");
-        button.textContent = "Open Notepad";
+        button.textContent = "Play Game";
         button.style.width = "130px";
         button.style.marginTop = "25px";
         button.style.backgroundColor = "#469afa";
@@ -65,7 +65,9 @@
         button.style.border = "none";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
-        button.addEventListener("click", toggleNotepad);
+        button.addEventListener("click", function() {
+            alert();
+        });
         return button;
     }
 
@@ -165,7 +167,7 @@
         menuTitle.style.marginBottom = "10px";
 
         menuContainer.appendChild(menuTitle);
-        menuContainer.appendChild(otherButton);
+        menuContainer.appendChild(notepadButton);
 
         return menuContainer;
     }
