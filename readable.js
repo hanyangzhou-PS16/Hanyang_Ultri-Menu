@@ -8,7 +8,7 @@
     var offsetXCalculator, offsetYCalculator;
     var offsetXNotepad, offsetYNotepad;
 
-    var otherButton = createOtherButton();
+    var otherButton = createNotepadButton();
     var openCloseButton = createOpenCloseButton();
     var menuContainer = createMenuContainer();
 
@@ -41,11 +41,25 @@
         isNotepadOpen = !isNotepadOpen;
     }
 
-    function createOtherButton() {
+    function createNotepadButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
-        button.style.width = "120px";
-        button.style.marginTop = "10px";
+        button.style.width = "130px";
+        button.style.marginTop = "25px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", toggleNotepad);
+        return button;
+    }
+    
+    function createGameButton() {
+        var button = document.createElement("button");
+        button.textContent = "Open Notepad";
+        button.style.width = "130px";
+        button.style.marginTop = "25px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "none";
@@ -274,7 +288,8 @@
     function createOpenCloseButton() {
         var button = document.createElement("button");
         button.textContent = "Open Calculator";
-        button.style.width = "120px";
+        button.style.width = "130px";
+        button.style.height = "25px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "none";
