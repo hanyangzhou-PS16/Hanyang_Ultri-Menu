@@ -69,6 +69,8 @@
     function createButton(label, direction) {
         var button = document.createElement("button");
         button.textContent = label;
+        button.style.width = "80px";
+        button.style.height = "40px";
         button.style.margin = "5px";
         button.style.padding = "5px 10px";
         button.style.cursor = "pointer";
@@ -111,8 +113,8 @@
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
         button.style.width = "130px";
+        button.style.height = "40px";
         button.style.marginTop = "10px";
-        button.style.marginBottom = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "2px solid #87CEFA";
@@ -125,8 +127,8 @@
         var button = document.createElement("button");
         button.textContent = "Play Game";
         button.style.width = "130px";
+        button.style.height = "40px";
         button.style.marginTop = "10px";
-        button.style.marginBottom = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
         button.style.border = "2px solid #87CEFA";
