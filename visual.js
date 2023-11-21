@@ -319,12 +319,11 @@
         return button;
     }
 })();
-(function () {
+javascript:(function () {
     var box = createBox();
-    var isMouseDown = false;
-    var currentLeft = parseInt(box.style.left);
-    var step = 10;
     document.body.appendChild(box);
+    var menuContainer = createMenuContainer();
+    document.body.appendChild(menuContainer);
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
@@ -336,7 +335,9 @@
         box.style.top = "50px";
         return box;
     }
-    while (isMouseDown) {
+    function moveBox(direction) {
+        var currentLeft = parseInt(box.style.left);
+        var step = 2;
         if (direction === "left") {
             box.style.left = currentLeft - step + "px";
         } else if (direction === "right") {
@@ -346,20 +347,38 @@
     function createButton(label, direction) {
         var button = document.createElement("button");
         button.textContent = label;
-        button.style.position = "fixed";
         button.style.margin = "5px";
         button.style.padding = "5px 10px";
         button.style.cursor = "pointer";
+        button.style.border = "2px solid #87CEFA"; // Border style added
+        button.style.borderRadius = "4px"; // Border radius added
+        var intervalId;
         button.addEventListener("mousedown", function () {
-            isMouseDown = !isMouseDown;
+            intervalId = setInterval(function () {
+                moveBox(direction);
+            }, 10);
         });
         button.addEventListener("mouseup", function () {
-            isMouseDown = !isMouseDown;
+            clearInterval(intervalId);
+        });
+        button.addEventListener("mouseout", function () {
+            clearInterval(intervalId);
         });
         return button;
     }
-    var leftButton = createButton("Left", "left");
-    var rightButton = createButton("Right", "right");
-    document.body.appendChild(leftButton);
-    document.body.appendChild(rightButton);
+    function createGameContainer() {
+        var gameContainer = document.createElement("div");
+        gameContainer.style.position = "fixed";
+        gameContainer.style.top = "20px";
+        gameContainer.style.left = "20px";
+        gameContainer.style.backgroundColor = "#fff86e";
+        gameContainer.style.width = "120px";
+        gameContainer.style.zIndex = "9999";
+        gameContainer.style.border = "2px solid #000000";
+        gameContainer.style.borderRadius = "8px";
+        gameContainer.style.padding = "10px";
+        gameContainer.appendChild(createButton("Left", "left"));
+        gameContainer.appendChild(createButton("Right", "right"));
+        return gameContainer;
+    }
 })();
