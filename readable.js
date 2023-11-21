@@ -168,14 +168,7 @@
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
 
-        var logoImg = document.createElement("img");
-        logoImg.src = "Useful Tools-logos_black.png";
-        logoImg.alt = "Logo";
-        logoImg.style.width = "100%";
-        logoImg.style.marginBottom = "10px";
-
         menuContainer.appendChild(menuTitle);
-        menuContainer.appendChild(logoImg);
         menuContainer.appendChild(notepadButton);
 
         return menuContainer;
