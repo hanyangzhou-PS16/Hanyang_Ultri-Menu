@@ -16,7 +16,6 @@
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
     document.body.appendChild(notepadContainer);
-
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
 
@@ -32,7 +31,6 @@
     }
 
     function toggleNotepad() {
-        console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
             notepadButton.textContent = "Open Notepad";
