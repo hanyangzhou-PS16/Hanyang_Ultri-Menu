@@ -182,7 +182,9 @@
         dateTimeContainer.style.textAlign = "center";
         var dateTimeText = document.createElement("p");
         dateTimeText.style.margin = "0px";
-        dateTimeText.style.fontSize = "24px";
+        dateTimeText.style.fontSize = "18px";
+        dateTimeText.style.color = "#ff5640";
+        dateTimeText.style.fontFamily = "Arial, sans-serif";
 
         function updateDateTime() {
             var now = new Date();
@@ -193,7 +195,7 @@
             var dateString = now.toDateString();
             var timeString = hours + ':' + minutes + ':' + seconds;
 
-            dateTimeText.textContent = "Date: " + dateString + " | Time: " + timeString;
+            dateTimeText.textContent = "Date: " + dateString + "\n Time: " + timeString;
         }
 
         updateDateTime();
