@@ -324,6 +324,7 @@ javascript:(function () {
     document.body.appendChild(box);
     var containerG = createGameContainer();
     document.body.appendChild(containerG);
+    var intervalId;
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
@@ -352,8 +353,8 @@ javascript:(function () {
         button.style.cursor = "pointer";
         button.style.border = "2px solid #87CEFA";
         button.style.borderRadius = "4px";
-        var intervalId;
         button.addEventListener("mousedown", function () {
+            clearInterval(intervalId);
             intervalId = setInterval(function () {
                 moveBox(direction);
             }, 10);
