@@ -493,3 +493,4 @@
         button.addEventListener("click", toggleCalculator);
         return button;
     }
+})();
