@@ -57,12 +57,13 @@
         box.style.left = "50%";
         box.style.transform = "translateX(-50%)";
         box.style.top = "50px";
+        box.style.display = "none";
         return box;
     }
 
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
-        var step = 2;
+        var step = 5;
         if (direction === "left") {
             box.style.left = currentLeft - step + "px";
         } else if (direction === "right") {
@@ -100,7 +101,7 @@
         gameContainer.style.left = "20px";
         gameContainer.style.backgroundColor = "#fff86e";
         gameContainer.style.width = "120px";
-        gameContainer.style.zIndex = "9999";
+        gameContainer.style.zIndex = "10000";
         gameContainer.style.border = "2px solid #000000";
         gameContainer.style.borderRadius = "8px";
         gameContainer.style.padding = "10px";
