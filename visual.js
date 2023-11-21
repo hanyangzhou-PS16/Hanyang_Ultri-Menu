@@ -323,7 +323,7 @@
         menuContainer.style.left = "20px";
         menuContainer.style.backgroundColor = "#fff86e";
         menuContainer.style.width = "300px";
-        menuContainer.style.height = "300px
+        menuContainer.style.height = "300px";
         menuContainer.style.zIndex = "9999";
         menuContainer.style.border = "2px solid #000000";
         menuContainer.style.borderRadius = "8px";
