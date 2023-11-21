@@ -7,18 +7,18 @@
     var isDraggingNotepad = false;
     var offsetXCalculator, offsetYCalculator;
     var offsetXNotepad, offsetYNotepad;
-
     var notepadButton = createNotepadButton();
     var openCloseButton = createOpenCloseButton();
     var menuContainer = createMenuContainer();
     var gameButton = createGameButton();
-
+    var dateTimeContainer = createDateTimeContainer();
+    
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
     document.body.appendChild(notepadContainer);
-
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
+    menuContainer.appendChild(dateTimeContainer);
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
@@ -174,6 +174,32 @@
         menuContainer.appendChild(notepadButton);
 
         return menuContainer;
+    }
+
+    function createDateTimeContainer() {
+        var dateTimeContainer = document.createElement("div");
+        dateTimeContainer.style.marginTop = "20px";
+        dateTimeContainer.style.textAlign = "center";
+        var dateTimeText = document.createElement("p");
+        dateTimeText.style.margin = "0";
+        dateTimeText.style.fontSize = "16px";
+
+        function updateDateTime() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+
+            var dateString = now.toDateString();
+            var timeString = hours + ':' + minutes + ':' + seconds;
+
+            dateTimeText.textContent = "Date: " + dateString + " | Time: " + timeString;
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+        dateTimeContainer.appendChild(dateTimeText);
+        return dateTimeContainer;
     }
 
     function startDragging(e, container, type) {
