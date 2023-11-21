@@ -350,8 +350,8 @@ javascript:(function () {
         button.style.margin = "5px";
         button.style.padding = "5px 10px";
         button.style.cursor = "pointer";
-        button.style.border = "2px solid #87CEFA"; // Border style added
-        button.style.borderRadius = "4px"; // Border radius added
+        button.style.border = "2px solid #87CEFA";
+        button.style.borderRadius = "4px";
         var intervalId;
         button.addEventListener("mousedown", function () {
             intervalId = setInterval(function () {
