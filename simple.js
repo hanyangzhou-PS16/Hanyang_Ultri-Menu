@@ -96,7 +96,7 @@
         return calculatorContainer;
     }
 
-    function createNotepadContainer() {
+        function createNotepadContainer() {
         var notepadContainer = document.createElement("div");
         notepadContainer.style.position = "fixed";
         notepadContainer.style.top = "50%";
@@ -109,14 +109,26 @@
         notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
-
-        var notepadInput = createInput("text");
+    
+        var notepadInput = createTextarea();
         var notepadDragButton = createDragButton(notepadContainer, "notepad");
-
+    
         notepadContainer.appendChild(notepadInput);
         notepadContainer.appendChild(notepadDragButton);
-
+    
         return notepadContainer;
+    }
+    
+    function createTextarea() {
+        var textarea = document.createElement("textarea");
+        textarea.style.width = "100%";
+        textarea.style.height = "200px";
+        textarea.style.padding = "10px";
+        textarea.style.marginTop = "10px";
+        textarea.style.boxSizing = "border-box";
+        textarea.style.border = "1px solid #ccc";
+        textarea.style.borderRadius = "4px";
+        return textarea;
     }
 
     function createMenuContainer() {
