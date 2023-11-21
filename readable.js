@@ -169,9 +169,6 @@
         menuTitle.style.marginBottom = "10px";
 
         var iframe1 = createIframe("https://youtube.com");
-        iframe1.style.position = "fixed";
-        iframe1.style.border = "2px solid #000000";
-        iframe1.style.borderRadius = "8px";
 
         menuContainer.appendChild(menuTitle);
         menuContainer.appendChild(iframe1);
