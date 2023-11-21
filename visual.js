@@ -25,6 +25,7 @@
     menuContainer.appendChild(openCloseButton);
     menuContainer.appendChild(gameButton);
     menuContainer.appendChild(dateTimeContainer);
+
     function toggleCalculator() {
         if (isCalculatorOpen) {
             calculatorContainer.style.display = "none";
@@ -35,6 +36,7 @@
         }
         isCalculatorOpen = !isCalculatorOpen;
     }
+
     function toggleNotepad() {
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
@@ -45,6 +47,7 @@
         }
         isNotepadOpen = !isNotepadOpen;
     }
+
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
@@ -56,6 +59,7 @@
         box.style.top = "50px";
         return box;
     }
+
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
         var step = 2;
@@ -88,6 +92,7 @@
         });
         return button;
     }
+
     function createGameContainer() {
         var gameContainer = document.createElement("div");
         gameContainer.style.position = "fixed";
@@ -100,16 +105,15 @@
         gameContainer.style.borderRadius = "8px";
         gameContainer.style.padding = "10px";
         gameContainer.style.display = "none";
-        var leftButton = createButton("Left", "left");
-        var rightButton = createButton("Right", "right");
-        gameContainer.appendChild(leftButton);
-        gameContainer.appendChild(rightButton);
-        document.body.appendChild(gameContainer);
+        gameContainer.appendChild(createButton("Left", "left"));
+        gameContainer.appendChild(createButton("Right", "right"));
         return gameContainer;
     }
+
     function toggleGameContainer() {
         containerG.style.display = containerG.style.display === "none" ? "block" : "none";
     }
+
     function createNotepadButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
@@ -124,6 +128,7 @@
         button.addEventListener("click", toggleNotepad);
         return button;
     }
+
     function createGameButton() {
         var button = document.createElement("button");
         button.textContent = "Play Game";
@@ -137,9 +142,19 @@
         button.style.cursor = "pointer";
         button.addEventListener("click", function () {
             toggleGameContainer();
+            toggleBoxVisibility();
         });
         return button;
     }
+
+    function toggleBoxVisibility() {
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "block";
+        } else {
+            box.style.display = "none";
+        }
+    }
+
     function createCalculatorContainer() {
         var calculatorContainer = document.createElement("div");
         calculatorContainer.style.position = "fixed";
