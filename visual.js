@@ -1,5 +1,6 @@
 (function () {
     var isNotepadOpen = false;
+    var intervalId;
     var calculatorContainer = createCalculatorContainer();
     var notepadContainer = createNotepadContainer();
     var isCalculatorOpen = false;
@@ -14,6 +15,10 @@
     var menuContainer = createMenuContainer();
     var gameButton = createGameButton();
     var dateTimeContainer = createDateTimeContainer();
+    var box = createBox();
+    var containerG = createGameContainer();
+    document.body.appendChild(box);
+    document.body.appendChild(containerG);
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
     document.body.appendChild(notepadContainer);
@@ -39,6 +44,71 @@
             notepadButton.textContent = "Close Notepad";
         }
         isNotepadOpen = !isNotepadOpen;
+    }
+    function createBox() {
+        var box = document.createElement("div");
+        box.style.width = "50px";
+        box.style.height = "50px";
+        box.style.backgroundColor = "#4682b4";
+        box.style.position = "absolute";
+        box.style.left = "50%";
+        box.style.transform = "translateX(-50%)";
+        box.style.top = "50px";
+        return box;
+    }
+    function moveBox(direction) {
+        var currentLeft = parseInt(box.style.left);
+        var step = 2;
+        if (direction === "left") {
+            box.style.left = currentLeft - step + "px";
+        } else if (direction === "right") {
+            box.style.left = currentLeft + step + "px";
+        }
+    }
+
+    function createButton(label, direction) {
+        var button = document.createElement("button");
+        button.textContent = label;
+        button.style.margin = "5px";
+        button.style.padding = "5px 10px";
+        button.style.cursor = "pointer";
+        button.style.border = "2px solid #87CEFA";
+        button.style.borderRadius = "4px";
+        button.addEventListener("mousedown", function () {
+            clearInterval(intervalId);
+            intervalId = setInterval(function () {
+                moveBox(direction);
+            }, 10);
+        });
+        button.addEventListener("mouseup", function () {
+            clearInterval(intervalId);
+        });
+        button.addEventListener("mouseout", function () {
+            clearInterval(intervalId);
+        });
+        return button;
+    }
+    function createGameContainer() {
+        var gameContainer = document.createElement("div");
+        gameContainer.style.position = "fixed";
+        gameContainer.style.top = "20px";
+        gameContainer.style.left = "20px";
+        gameContainer.style.backgroundColor = "#fff86e";
+        gameContainer.style.width = "120px";
+        gameContainer.style.zIndex = "9999";
+        gameContainer.style.border = "2px solid #000000";
+        gameContainer.style.borderRadius = "8px";
+        gameContainer.style.padding = "10px";
+        gameContainer.style.display = "none";
+        var leftButton = createButton("Left", "left");
+        var rightButton = createButton("Right", "right");
+        gameContainer.appendChild(leftButton);
+        gameContainer.appendChild(rightButton);
+        document.body.appendChild(gameContainer);
+        return gameContainer;
+    }
+    function toggleGameContainer() {
+        containerG.style.display = containerG.style.display === "none" ? "block" : "none";
     }
     function createNotepadButton() {
         var button = document.createElement("button");
@@ -66,7 +136,7 @@
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", function () {
-            alert("Game button clicked!");
+            toggleGameContainer();
         });
         return button;
     }
