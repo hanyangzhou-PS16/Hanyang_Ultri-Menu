@@ -11,6 +11,7 @@
     var notepadButton = createNotepadButton();
     var openCloseButton = createOpenCloseButton();
     var menuContainer = createMenuContainer();
+    var gameButton = createGameButton();
 
     document.body.appendChild(menuContainer);
     document.body.appendChild(calculatorContainer);
@@ -300,4 +301,5 @@
         button.addEventListener("click", toggleCalculator);
         return button;
     }
+    document.body.appendChild(gameButton);
 })();
