@@ -18,6 +18,7 @@
     document.body.appendChild(notepadContainer);
 
     menuContainer.appendChild(openCloseButton);
+    menuContainer.appendChild(gameButton);
 
     function toggleCalculator() {
         if (isCalculatorOpen) {
@@ -301,5 +302,4 @@
         button.addEventListener("click", toggleCalculator);
         return button;
     }
-    document.body.appendChild(gameButton);
 })();
