@@ -31,7 +31,6 @@
         isCalculatorOpen = !isCalculatorOpen;
     }
     function toggleNotepad() {
-        console.log("Toggling Notepad");
         if (isNotepadOpen) {
             notepadContainer.style.display = "none";
             notepadButton.textContent = "Open Notepad";
@@ -211,6 +210,7 @@
     function stopDragging() {
         isDraggingCalculator = false;
         isDraggingNotepad = false;
+        isDraggingMenu = false;
         document.removeEventListener("mousemove", handleDragging);
     }
     function handleDragging(e) {
@@ -228,6 +228,7 @@
             notepadContainer.style.top = newY + "px";
             notepadContainer.style.transform = "translate(0, 0)";
         }
+
         if (isDraggingMenu) {
             var newX = e.clientX - offsetXMenu;
             var newY = e.clientY - offsetYMenu;
