@@ -225,7 +225,7 @@
         menuContainer.style.border = "2px solid #000000";
         menuContainer.style.borderRadius = "8px";
         menuContainer.style.padding = "20px";
-        menuContainer.style.display = "block"; // Initially visible
+        menuContainer.style.display = "block";
         menuContainer.addEventListener("mousedown", function (e) {
             startDragging(e, menuContainer, "menu");
         });
