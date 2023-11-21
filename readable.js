@@ -50,13 +50,13 @@
         button.style.marginTop = "25px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
-        button.style.border = "none";
+        button.style.border = "2px solid #87CEFA";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", toggleNotepad);
         return button;
     }
-    
+
     function createGameButton() {
         var button = document.createElement("button");
         button.textContent = "Play Game";
@@ -64,10 +64,10 @@
         button.style.marginTop = "25px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
-        button.style.border = "none";
+        button.style.border = "2px solid #87CEFA";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             alert("Game button clicked!");
         });
         return button;
@@ -127,16 +127,16 @@
         notepadContainer.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.1)";
         notepadContainer.style.zIndex = "9999";
         notepadContainer.style.display = "none";
-    
+
         var notepadInput = createTextarea();
         var notepadDragButton = createDragButton(notepadContainer, "notepad");
-    
+
         notepadContainer.appendChild(notepadInput);
         notepadContainer.appendChild(notepadDragButton);
-    
+
         return notepadContainer;
     }
-    
+
     function createTextarea() {
         var textarea = document.createElement("textarea");
         textarea.style.width = "100%";
@@ -168,10 +168,29 @@
         menuTitle.style.color = "#333";
         menuTitle.style.marginBottom = "10px";
 
+        var iframe1 = createIframe("https:youtube.com");
+        iframe1.style.position = "fixed";
+        iframe1.width = "200px";
+        iframe1.height = "200px";
+        iframe1.style.border = "2px solid #000000";
+        iframe1.style.borderRadius = "8px";
+
         menuContainer.appendChild(menuTitle);
+        menuContainer.appendChild(iframe1);
         menuContainer.appendChild(notepadButton);
 
         return menuContainer;
+    }
+
+    function createIframe(src) {
+        var iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.style.width = "100%";
+        iframe.style.height = "100px";
+        iframe.style.border = "1px solid #87CEFA";
+        iframe.style.borderRadius = "4px";
+        iframe.style.marginTop = "10px";
+        return iframe;
     }
 
     function startDragging(e, container, type) {
@@ -222,7 +241,7 @@
         dragButton.style.marginTop = "10px";
         dragButton.style.backgroundColor = "#ff5640";
         dragButton.style.color = "#333";
-        dragButton.style.border = "none";
+        dragButton.style.border = "2px solid #87CEFA";
         dragButton.style.borderRadius = "4px";
         dragButton.style.cursor = "pointer";
 
@@ -255,7 +274,7 @@
         button.style.marginTop = "10px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
-        button.style.border = "none";
+        button.style.border = "2px solid #87CEFA";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", function () {
@@ -296,7 +315,7 @@
         button.style.height = "25px";
         button.style.backgroundColor = "#469afa";
         button.style.color = "#fff";
-        button.style.border = "none";
+        button.style.border = "2px solid #87CEFA";
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", toggleCalculator);
