@@ -322,8 +322,8 @@
 javascript:(function () {
     var box = createBox();
     document.body.appendChild(box);
-    var menuContainer = createMenuContainer();
-    document.body.appendChild(menuContainer);
+    var containerG = createGameContainer();
+    document.body.appendChild(containerG);
     function createBox() {
         var box = document.createElement("div");
         box.style.width = "50px";
