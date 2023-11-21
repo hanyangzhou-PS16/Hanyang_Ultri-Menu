@@ -180,11 +180,16 @@
         var dateTimeContainer = document.createElement("div");
         dateTimeContainer.style.marginTop = "20px";
         dateTimeContainer.style.textAlign = "center";
-        var dateTimeText = document.createElement("p");
-        dateTimeText.style.margin = "0px";
-        dateTimeText.style.fontSize = "18px";
-        dateTimeText.style.color = "#ff5640";
-        dateTimeText.style.fontFamily = "Arial, sans-serif";
+        var dateText = document.createElement("p");
+        dateText.style.margin = "0px";
+        dateText.style.fontSize = "18px";
+        dateText.style.color = "#ff5640";
+        dateText.style.fontFamily = "Arial, sans-serif";
+        var timeText = document.createElement("p");
+        timeText.style.margin = "0px";
+        timeText.style.fontSize = "18px";
+        timeText.style.color = "#ff5640";
+        timeText.style.fontFamily = "Arial, sans-serif";
 
         function updateDateTime() {
             var now = new Date();
@@ -195,12 +200,14 @@
             var dateString = now.toDateString();
             var timeString = hours + ':' + minutes + ':' + seconds;
 
-            dateTimeText.textContent = "Date: " + dateString + "<br>Time: " + timeString;
+            dateText.textContent = "Date: " + dateString;
+            timeText.textContent = "Time: " + timeString;
         }
 
         updateDateTime();
         setInterval(updateDateTime, 1000);
-        dateTimeContainer.appendChild(dateTimeText);
+        dateTimeContainer.appendChild(dateText);
+        dateTimeContainer.appendChild(timeText);
         return dateTimeContainer;
     }
 
