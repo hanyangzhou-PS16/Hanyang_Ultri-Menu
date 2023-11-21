@@ -195,7 +195,7 @@
             var dateString = now.toDateString();
             var timeString = hours + ':' + minutes + ':' + seconds;
 
-            dateTimeText.textContent = "Date: " + dateString + "\n Time: " + timeString;
+            dateTimeText.textContent = "Date: " + dateString + "\nTime: " + timeString;
         }
 
         updateDateTime();
