@@ -180,7 +180,7 @@
     function createIframe(src) {
         var iframe = document.createElement("iframe");
         iframe.src = src;
-        iframe.style.width = "100%";
+        iframe.style.width = "15%";
         iframe.style.height = "100px";
         iframe.style.border = "1px solid #87CEFA";
         iframe.style.borderRadius = "4px";
