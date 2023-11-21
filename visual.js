@@ -52,7 +52,7 @@
 
     function moveObstacles() {
         for (var i = 0; i < obstacles.length; i++) {
-            obstacles[i].y += 2; // Adjust the speed of obstacles
+            obstacles[i].y += 2;
             obstacles[i].element.style.top = obstacles[i].y + "px";
 
             // Remove obstacles that have moved off-screen
@@ -94,7 +94,7 @@
         obstacle.style.backgroundColor = "#ff5640";
         obstacle.style.position = "absolute";
         obstacle.style.left = Math.random() * (window.innerWidth - 30) + "px";
-        obstacle.style.top = "-30px"; // Start above the viewport
+        obstacle.style.top = "-30px";
         document.body.appendChild(obstacle);
 
         return {
@@ -227,7 +227,7 @@
         button.addEventListener("click", function () {
             toggleGameContainer();
             toggleBoxVisibility();
-            startGame(); // Start the game when the button is clicked
+            startGame();
         });
         return button;
     }
