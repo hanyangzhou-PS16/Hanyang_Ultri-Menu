@@ -30,6 +30,8 @@
     var obstacles = [];
 
     function startGame() {
+        clearInterval(gameInterval);
+        removeObstacles();
         resetGame();
         gameInterval = setInterval(updateGame, 20);
         gameButton.textContent = "Stop Game";
@@ -37,8 +39,8 @@
 
     function stopGame() {
         clearInterval(gameInterval);
-        resetGame();
         removeObstacles();
+        resetGame();
         gameButton.textContent = "Start Game";
     }
 
@@ -213,6 +215,8 @@
 
     function toggleGameContainer() {
         containerG.style.display = containerG.style.display === "none" ? "block" : "none";
+        stopGame();
+        resetGame();
     }
 
     function createNotepadButton() {
