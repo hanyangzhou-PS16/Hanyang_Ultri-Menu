@@ -248,7 +248,32 @@
         });
         return button;
     }
-
+    
+    function createButton(label, direction) {
+        var button = document.createElement("button");
+        button.textContent = label;
+        button.style.width = "80px";
+        button.style.height = "40px";
+        button.style.margin = "5px";
+        button.style.padding = "5px 10px";
+        button.style.cursor = "pointer";
+        button.style.border = "2px solid #87CEFA";
+        button.style.borderRadius = "4px";
+        button.addEventListener("mousedown", function () {
+            clearInterval(intervalId);
+            intervalId = setInterval(function () {
+                moveBox(direction);
+            }, 10);
+        });
+        button.addEventListener("mouseup", function () {
+            clearInterval(intervalId);
+        });
+        button.addEventListener("mouseout", function () {
+            clearInterval(intervalId);
+        });
+        return button;
+    }
+    
     function toggleBoxVisibility() {
         if (box.style.display === "none" || box.style.display === "") {
             box.style.display = "block";
