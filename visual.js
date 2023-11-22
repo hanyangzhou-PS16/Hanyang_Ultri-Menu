@@ -155,38 +155,14 @@
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
         var step = 8;
-        if (direction === "left") {
+    
+        if (direction === "left" && currentLeft - step >= 0) {
             box.style.left = currentLeft - step + "px";
-        } else if (direction === "right") {
+        } else if (direction === "right" && currentLeft + step + box.offsetWidth <= window.innerWidth) {
             box.style.left = currentLeft + step + "px";
         }
     }
-
-    function createButton(label, direction) {
-        var button = document.createElement("button");
-        button.textContent = label;
-        button.style.width = "80px";
-        button.style.height = "40px";
-        button.style.margin = "5px";
-        button.style.padding = "5px 10px";
-        button.style.cursor = "pointer";
-        button.style.border = "2px solid #87CEFA";
-        button.style.borderRadius = "4px";
-        button.addEventListener("mousedown", function () {
-            clearInterval(intervalId);
-            intervalId = setInterval(function () {
-                moveBox(direction);
-            }, 10);
-        });
-        button.addEventListener("mouseup", function () {
-            clearInterval(intervalId);
-        });
-        button.addEventListener("mouseout", function () {
-            clearInterval(intervalId);
-        });
-        return button;
-    }
-
+    
     function createGameContainer() {
         var gameContainer = document.createElement("div");
         gameContainer.style.position = "fixed";
@@ -199,8 +175,12 @@
         gameContainer.style.borderRadius = "8px";
         gameContainer.style.padding = "10px";
         gameContainer.style.display = "none";
+        
+        gameContainer.appendChild(createButton("Up", "up"));
         gameContainer.appendChild(createButton("Left", "left"));
         gameContainer.appendChild(createButton("Right", "right"));
+        gameContainer.appendChild(createButton("Down", "down"));
+    
         var startStopButton = createButton("Start Game", "start");
         startStopButton.addEventListener("click", function () {
             if (startStopButton.textContent === "Start Game") {
@@ -209,8 +189,25 @@
                 stopGame();
             }
         });
+    
         gameContainer.appendChild(startStopButton);
         return gameContainer;
+    }
+    
+    function moveBox(direction) {
+        var currentTop = parseInt(box.style.top);
+        var currentLeft = parseInt(box.style.left);
+        var step = 5;
+    
+        if (direction === "up" && currentTop - step >= 0) {
+            box.style.top = currentTop - step + "px";
+        } else if (direction === "down" && currentTop + step + box.offsetHeight <= window.innerHeight) {
+            box.style.top = currentTop + step + "px";
+        } else if (direction === "left" && currentLeft - step >= 0) {
+            box.style.left = currentLeft - step + "px";
+        } else if (direction === "right" && currentLeft + step + box.offsetWidth <= window.innerWidth) {
+            box.style.left = currentLeft + step + "px";
+        }
     }
 
     function toggleGameContainer() {
