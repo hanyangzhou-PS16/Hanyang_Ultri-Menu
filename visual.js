@@ -99,8 +99,8 @@
     function createObstacle() {
         var obstacle = document.createElement("div");
         obstacle.className = "obstacle";
-        obstacle.style.width = Math.round(Math.random() * (175 - 50) + 50).toString() + "px";
-        obstacle.style.height = "50px";
+        obstacle.style.width = Math.round(Math.random() * (250 - 50) + 50).toString() + "px";
+        obstacle.style.height = "30px";
         obstacle.style.backgroundColor = "#ff5640";
         obstacle.style.position = "absolute";
         obstacle.style.left = Math.random() * (window.innerWidth - 30) + "px";
