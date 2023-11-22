@@ -4,6 +4,7 @@
     var calculatorContainer = createCalculatorContainer();
     var notepadContainer = createNotepadContainer();
     var isCalculatorOpen = false;
+    var isGameOpen = false;
     var isDraggingCalculator = false;
     var isDraggingNotepad = false;
     var isDraggingMenu = false;
@@ -233,7 +234,7 @@
 
     function createGameButton() {
         var button = document.createElement("button");
-        button.textContent = "Start Game";
+        button.textContent = "Open Game";
         button.style.width = "130px";
         button.style.height = "40px";
         button.style.marginTop = "10px";
