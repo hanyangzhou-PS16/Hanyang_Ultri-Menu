@@ -181,8 +181,6 @@
         gameContainer.appendChild(createButton("Left", "left"));
         gameContainer.appendChild(createButton("Right", "right"));
         gameContainer.appendChild(createButton("Down", "down"));
-    
-        gameContainer.appendChild(startStopButton);
         return gameContainer;
     }
     
