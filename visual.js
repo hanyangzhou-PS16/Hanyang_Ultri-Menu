@@ -151,7 +151,7 @@
 
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
-        var step = 2;
+        var step = 8;
         if (direction === "left") {
             box.style.left = currentLeft - step + "px";
         } else if (direction === "right") {
