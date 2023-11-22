@@ -61,14 +61,18 @@
 
     function moveObstacles() {
         for (var i = 0; i < obstacles.length; i++) {
-            obstacles[i].y += 2;
+            obstacles[i].y += 2; // Adjust the speed of obstacles
             obstacles[i].element.style.top = obstacles[i].y + "px";
+
+            // Remove obstacles that have moved off-screen
             if (obstacles[i].y > window.innerHeight) {
                 obstacles[i].element.parentNode.removeChild(obstacles[i].element);
                 obstacles.splice(i, 1);
                 i--;
             }
         }
+
+        // Add new obstacles randomly
         if (Math.random() < 0.02) {
             var obstacle = createObstacle();
             obstacles.push(obstacle);
@@ -143,6 +147,7 @@
         box.style.transform = "translateX(-50%)";
         box.style.top = "50px";
         box.style.display = "none";
+        document.body.appendChild(box);
         return box;
     }
 
@@ -195,7 +200,15 @@
         gameContainer.style.display = "none";
         gameContainer.appendChild(createButton("Left", "left"));
         gameContainer.appendChild(createButton("Right", "right"));
-        gameContainer.appendChild(createButton("Start Game", "start"));
+        var startStopButton = createButton("Start Game", "start");
+        startStopButton.addEventListener("click", function () {
+            if (startStopButton.textContent === "Start Game") {
+                startGame();
+            } else {
+                stopGame();
+            }
+        });
+        gameContainer.appendChild(startStopButton);
         return gameContainer;
     }
 
@@ -230,11 +243,8 @@
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", function () {
-            if (button.textContent === "Start Game") {
-                startGame();
-            } else {
-                stopGame();
-            }
+            toggleGameContainer();
+            toggleBoxVisibility();
         });
         return button;
     }
