@@ -74,7 +74,7 @@
             }
         }
 
-        if (Math.random() < 0.02) {
+        if (Math.round(Math.random() * (100 - 1) + 1) < 5) {
             var obstacle = createObstacle();
             obstacles.push(obstacle);
             document.body.appendChild(obstacle.element);
@@ -99,7 +99,7 @@
     function createObstacle() {
         var obstacle = document.createElement("div");
         obstacle.className = "obstacle";
-        obstacle.style.width = Math.round(Math.random() * (250 - 50) + 50).toString() + "px";
+        obstacle.style.width = Math.round(Math.random() * (375 - 50) + 50).toString() + "px";
         obstacle.style.height = "30px";
         obstacle.style.backgroundColor = "#ff5640";
         obstacle.style.position = "absolute";
