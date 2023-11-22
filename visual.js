@@ -43,7 +43,7 @@
     }
 
     function resetGame() {
-        box.style.top = "50px";
+        box.style.top = "200px";
         obstacles = [];
     }
 
