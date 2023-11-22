@@ -41,14 +41,13 @@
     function stopGame() {
         clearInterval(gameInterval);
         removeObstacles();
-        resetGame();
-        gameButton.textContent = "Open Game";
     }
 
     function resetGame() {
         removeObstacles();
         box.style.top = "200px";
         obstacles = [];
+        gameButton.textContent = "Open Game";
     }
 
     function removeObstacles() {
