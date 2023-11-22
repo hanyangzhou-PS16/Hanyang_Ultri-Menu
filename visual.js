@@ -182,15 +182,6 @@
         gameContainer.appendChild(createButton("Right", "right"));
         gameContainer.appendChild(createButton("Down", "down"));
     
-        var startStopButton = createButton("Start Game", "start");
-        startStopButton.addEventListener("click", function () {
-            if (startStopButton.textContent === "Start Game") {
-                startGame();
-            } else {
-                stopGame();
-            }
-        });
-    
         gameContainer.appendChild(startStopButton);
         return gameContainer;
     }
@@ -212,9 +203,16 @@
     }
 
     function toggleGameContainer() {
-        containerG.style.display = containerG.style.display === "none" ? "block" : "none";
         stopGame();
         resetGame();
+        if (isGameOpen) {
+            containerG.style.display = "none";
+            containerG.textContent = "Open Game";
+        } else {
+            containerG.style.display = "block";
+            containerG.textContent = "Close Game";
+        }
+        isGameOpen = !isGameOpen;
     }
 
     function createNotepadButton() {
@@ -246,6 +244,12 @@
         button.addEventListener("click", function () {
             toggleGameContainer();
             toggleBoxVisibility();
+            if (isGameOpen) {
+                startGame();
+            } else {
+                stopGame();
+                resetGame();
+            }
         });
         return button;
     }
