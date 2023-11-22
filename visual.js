@@ -35,14 +35,14 @@
         removeObstacles();
         resetGame();
         gameInterval = setInterval(updateGame, 20);
-        gameButton.textContent = "Stop Game";
+        gameButton.textContent = "Close Game";
     }
 
     function stopGame() {
         clearInterval(gameInterval);
         removeObstacles();
         resetGame();
-        gameButton.textContent = "Start Game";
+        gameButton.textContent = "Open Game";
     }
 
     function resetGame() {
@@ -205,10 +205,8 @@
         resetGame();
         if (isGameOpen) {
             containerG.style.display = "none";
-            containerG.textContent = "Open Game";
         } else {
             containerG.style.display = "block";
-            containerG.textContent = "Close Game";
         }
         isGameOpen = !isGameOpen;
     }
