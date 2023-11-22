@@ -143,7 +143,7 @@
         box.style.position = "absolute";
         box.style.left = "50%";
         box.style.transform = "translateX(-50%)";
-        box.style.top = "50px";
+        box.style.top = "200px";
         box.style.display = "none";
         document.body.appendChild(box);
         return box;
