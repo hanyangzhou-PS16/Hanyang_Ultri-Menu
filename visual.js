@@ -29,10 +29,12 @@
 
     var gameInterval;
     var obstacles = [];
+    var powerups = [];
 
     function startGame() {
         clearInterval(gameInterval);
         removeObstacles();
+        removePowerups();
         resetGame();
         gameInterval = setInterval(updateGame, 20);
         gameButton.textContent = "Close Game";
@@ -41,12 +43,16 @@
     function stopGame() {
         clearInterval(gameInterval);
         removeObstacles();
+        removePowerups();
     }
 
     function resetGame() {
         removeObstacles();
+        removePowerups();
         box.style.top = "200px";
+        box.style.backgroundColor = "#4682b4";
         obstacles = [];
+        powerups = [];
         gameButton.textContent = "Open Game";
     }
 
@@ -57,9 +63,18 @@
         obstacles = [];
     }
 
+    function removePowerups() {
+        for (var i = 0; i < powerups.length; i++) {
+            powerups[i].element.parentNode.removeChild(powerups[i].element);
+        }
+        powerups = [];
+    }
+
     function updateGame() {
         moveObstacles();
+        movePowerups();
         checkCollision();
+        checkPowerupCollection();
     }
 
     function moveObstacles() {
@@ -81,39 +96,68 @@
         }
     }
 
-    function checkCollision() {
-        for (var i = 0; i < obstacles.length; i++) {
+    function movePowerups() {
+        for (var i = 0; i < powerups.length; i++) {
+            powerups[i].y += 5;
+            powerups[i].element.style.top = powerups[i].y + "px";
+
+            if (powerups[i].y > window.innerHeight) {
+                powerups[i].element.parentNode.removeChild(powerups[i].element);
+                powerups.splice(i, 1);
+                i--;
+            }
+        }
+
+        if (Math.round(Math.random() * (100 - 1) + 1) < 2) {
+            var powerup = createPowerup();
+            powerups.push(powerup);
+            document.body.appendChild(powerup.element);
+        }
+    }
+
+    function checkPowerupCollection() {
+        for (var i = 0; i < powerups.length; i++) {
             if (
-                box.offsetLeft < obstacles[i].x + obstacles[i].width &&
-                box.offsetLeft + box.offsetWidth > obstacles[i].x &&
-                box.offsetTop < obstacles[i].y + obstacles[i].height &&
-                box.offsetTop + box.offsetHeight > obstacles[i].y
+                box.offsetLeft < powerups[i].x + powerups[i].width &&
+                box.offsetLeft + box.offsetWidth > powerups[i].x &&
+                box.offsetTop < powerups[i].y + powerups[i].height &&
+                box.offsetTop + box.offsetHeight > powerups[i].y
             ) {
-                stopGame();
-                alert("Game Over!");
-                return;
+                applyPowerupEffect();
+                powerups[i].element.parentNode.removeChild(powerups[i].element);
+                powerups.splice(i, 1);
+                i--;
             }
         }
     }
 
-    function createObstacle() {
-        var obstacle = document.createElement("div");
-        obstacle.className = "obstacle";
-        obstacle.style.width = Math.round(Math.random() * (375 - 50) + 50).toString() + "px";
-        obstacle.style.height = "30px";
-        obstacle.style.backgroundColor = "#ff5640";
-        obstacle.style.position = "absolute";
-        obstacle.style.left = Math.random() * (window.innerWidth - 30) + "px";
-        obstacle.style.top = "-30px";
-        document.body.appendChild(obstacle);
+    function applyPowerupEffect() {
+        box.style.backgroundColor = "#ff5640";
+        var originalSpeed = 7;
+        var newSpeed = 14;
+        var duration = 5000;
+        var originalMoveBox = moveBox;
 
-        return {
-            element: obstacle,
-            x: obstacle.offsetLeft,
-            y: obstacle.offsetTop,
-            width: obstacle.offsetWidth,
-            height: obstacle.offsetHeight,
+        moveBox = function (direction) {
+            var currentTop = parseInt(box.style.top);
+            var currentLeft = parseInt(box.style.left);
+            var step = newSpeed;
+
+            if (direction === "up" && currentTop - step >= 0) {
+                box.style.top = currentTop - step + "px";
+            } else if (direction === "down" && currentTop + step + box.offsetHeight <= window.innerHeight) {
+                box.style.top = currentTop + step + "px";
+            } else if (direction === "left" && currentLeft - step >= 0) {
+                box.style.left = currentLeft - step + "px";
+            } else if (direction === "right" && currentLeft + step + box.offsetWidth <= window.innerWidth) {
+                box.style.left = currentLeft + step + "px";
+            }
         };
+
+        setTimeout(function () {
+            moveBox = originalMoveBox;
+            box.style.backgroundColor = "#4682b4";
+        }, duration);
     }
 
     function toggleCalculator() {
@@ -154,7 +198,7 @@
 
     function moveBox(direction) {
         var currentLeft = parseInt(box.style.left);
-        var step = 8;
+        var step = 7;
     
         if (direction === "left" && currentLeft - step >= 0) {
             box.style.left = currentLeft - step + "px";
