@@ -113,40 +113,39 @@
         for (var i = 0; i < obstacles.length; i++) {
             obstacles[i].y += 5;
             obstacles[i].element.style.top = obstacles[i].y + "px";
-
+    
             if (obstacles[i].y > window.innerHeight) {
                 obstacles[i].element.parentNode.removeChild(obstacles[i].element);
                 obstacles.splice(i, 1);
                 i--;
             }
         }
-
-        if (Math.round(Math.random() * (100 - 1) + 1) < 5) {
+        if (Math.round(Math.random() * (100 - 1) + 1) < 5 || obstacles.length === 0) {
             var obstacle = createObstacle();
             obstacles.push(obstacle);
             document.body.appendChild(obstacle.element);
         }
     }
-
+    
     function movePowerups() {
         for (var i = 0; i < powerups.length; i++) {
             powerups[i].y += 5;
             powerups[i].element.style.top = powerups[i].y + "px";
-
+    
             if (powerups[i].y > window.innerHeight) {
                 powerups[i].element.parentNode.removeChild(powerups[i].element);
                 powerups.splice(i, 1);
                 i--;
             }
         }
-
-        if (Math.round(Math.random() * (100 - 1) + 1) < 2) {
+    
+        if (Math.round(Math.random() * (100 - 1) + 1) < 2 || powerups.length === 0) {
             var powerup = createPowerup();
             powerups.push(powerup);
             document.body.appendChild(powerup.element);
         }
     }
-
+    
     function checkPowerupCollection() {
         for (var i = 0; i < powerups.length; i++) {
             if (
