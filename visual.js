@@ -18,6 +18,7 @@
     var dateTimeContainer = createDateTimeContainer();
     var box = createBox();
     var containerG = createGameContainer();
+
     document.body.appendChild(box);
     document.body.appendChild(containerG);
     document.body.appendChild(menuContainer);
@@ -44,6 +45,37 @@
         clearInterval(gameInterval);
         removeObstacles();
         removePowerups();
+        gameButton.textContent = "Open Game";
+    }
+    
+    function toggleGameContainer() {
+        if (isGameOpen) {
+            containerG.style.display = "none";
+            stopGame();
+            resetGame();
+        } else {
+            containerG.style.display = "block";
+            startGame();
+        }
+        isGameOpen = !isGameOpen;
+    }
+    
+    function createGameButton() {
+        var button = document.createElement("button");
+        button.textContent = "Open Game";
+        button.style.width = "130px";
+        button.style.height = "40px";
+        button.style.marginTop = "10px";
+        button.style.backgroundColor = "#469afa";
+        button.style.color = "#fff";
+        button.style.border = "2px solid #87CEFA";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        button.addEventListener("click", function () {
+            toggleGameContainer();
+            toggleBoxVisibility();
+        });
+        return button;
     }
 
     function resetGame() {
@@ -243,17 +275,6 @@
         }
     }
 
-    function toggleGameContainer() {
-        stopGame();
-        resetGame();
-        if (isGameOpen) {
-            containerG.style.display = "none";
-        } else {
-            containerG.style.display = "block";
-        }
-        isGameOpen = !isGameOpen;
-    }
-
     function createNotepadButton() {
         var button = document.createElement("button");
         button.textContent = "Open Notepad";
@@ -266,30 +287,6 @@
         button.style.borderRadius = "4px";
         button.style.cursor = "pointer";
         button.addEventListener("click", toggleNotepad);
-        return button;
-    }
-
-    function createGameButton() {
-        var button = document.createElement("button");
-        button.textContent = "Open Game";
-        button.style.width = "130px";
-        button.style.height = "40px";
-        button.style.marginTop = "10px";
-        button.style.backgroundColor = "#469afa";
-        button.style.color = "#fff";
-        button.style.border = "2px solid #87CEFA";
-        button.style.borderRadius = "4px";
-        button.style.cursor = "pointer";
-        button.addEventListener("click", function () {
-            toggleGameContainer();
-            toggleBoxVisibility();
-            if (isGameOpen) {
-                startGame();
-            } else {
-                stopGame();
-                resetGame();
-            }
-        });
         return button;
     }
     
